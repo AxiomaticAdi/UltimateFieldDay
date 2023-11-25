@@ -1,9 +1,9 @@
 import { Setting } from "./Setting";
 
 export type Game = {
-    id: string;
+    rowId: string;
+    gameId: string;
     name: string;
-    imgUri: string;
     setting: Setting;
     equipment: string[];
     minPlayerCount: number;

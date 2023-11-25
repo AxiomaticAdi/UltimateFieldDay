@@ -26,7 +26,7 @@ export default function Games() {
         <AppFrame>
             <div className="flex flex-row flex-wrap justify-center self-center">
                 {gamesList.map((value) => {
-                    return <GameCard key={value.id} game={value} />;
+                    return <GameCard key={value.gameId} game={value} />;
                 })}
             </div>
         </AppFrame>
