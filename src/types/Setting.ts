@@ -1,5 +1,5 @@
 export enum Setting {
-    Indoor,
-    Outdoor,
-    Any,
+    Indoor = "Indoor",
+    Outdoor = "Outdoor",
+    Any = "Any",
 }
