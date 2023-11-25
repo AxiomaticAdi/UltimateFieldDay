@@ -1,7 +1,6 @@
 import { Game } from "../types/Game";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/24/outline";
 
 export default function GameCardModal({ game }: { game: Game }) {
     const [open, setOpen] = useState(false);
