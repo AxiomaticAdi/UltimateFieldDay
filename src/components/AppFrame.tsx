@@ -1,8 +1,10 @@
 import { ReactNode } from "react";
+import Header from "./Header";
 
 export default function AppFrame({ children }: { children: ReactNode }) {
     return (
         <div className="absolute isolate h-full w-full overflow-hidden bg-gray-900">
+            <Header />
             <svg
                 className="absolute inset-0 -z-10 h-full w-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
                 aria-hidden="true"
