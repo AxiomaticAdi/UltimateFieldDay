@@ -72,7 +72,7 @@ export default function App() {
                             Start Planning!!
                         </Link>
                         <Link
-                            to="#"
+                            to="/about"
                             className="text-sm font-semibold leading-6 text-white"
                         >
                             About <span aria-hidden="true">→</span>

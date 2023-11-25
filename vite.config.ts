@@ -5,5 +5,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
     plugins: [react()],
     // TEST
-    base: "banana".indexOf("github") > -1 ? "/UltimateFieldDay/" : "/",
+    // base:
+    //     window.location.hostname.indexOf("github") > -1
+    //         ? "/UltimateFieldDay/"
+    //         : "/",
 });
