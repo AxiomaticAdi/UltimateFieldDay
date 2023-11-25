@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function App() {
     return (
         <div className="relative isolate overflow-hidden bg-gray-900">
@@ -73,18 +75,18 @@ export default function App() {
                         fresh and exciting field day ideas
                     </p>
                     <div className="mt-10 flex items-center gap-x-6">
-                        <a
-                            href="#"
+                        <Link
+                            to="/games"
                             className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
                         >
                             Start Planning!
-                        </a>
-                        <a
-                            href="#"
+                        </Link>
+                        <Link
+                            to="#"
                             className="text-sm font-semibold leading-6 text-white"
                         >
                             About <span aria-hidden="true">→</span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
