@@ -1,6 +1,17 @@
 import { useRouteError } from "react-router-dom";
 import AppFrame from "../components/AppFrame";
 
+function isErrorWithMessageAndStatusText(
+    error: unknown,
+): error is { message: string; statusText: string } {
+    return (
+        typeof error === "object" &&
+        error !== null &&
+        "message" in error &&
+        "statusText" in error
+    );
+}
+
 export default function ErrorPage() {
     const error = useRouteError();
     console.error(error);
@@ -16,7 +27,9 @@ export default function ErrorPage() {
                 <h1 className="text-4xl font-bold">Oops!</h1>
                 <div>Sorry, an unexpected error has occurred.</div>
                 <div>
-                    <i>{error.statusText || error.message}</i>
+                    {isErrorWithMessageAndStatusText(error) ? (
+                        <i>{error.statusText || error.message}</i>
+                    ) : null}
                 </div>
             </div>
         </AppFrame>
