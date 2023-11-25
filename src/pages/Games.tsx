@@ -13,9 +13,13 @@ export default function Games() {
         });
     }
 
-    // if there are no games hydrated yet, render nothing
+    // if there are no games hydrated yet, render blank page
     if (gamesList === undefined) {
-        return null;
+        return (
+            <AppFrame>
+                <div></div>
+            </AppFrame>
+        );
     }
 
     return (
