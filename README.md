@@ -1,6 +1,6 @@
-# FieldDay.GG - Field Day Activities Planner
+# Ultimate Field Day - Field Day Activities Planner
 
-FieldDay.gg is a web application designed to alleviate the stress of organizing field day events and to introduce a plethora of unique and engaging games. Whether you're looking to spice up a family gathering or add a twist to a community event, FieldDay.gg is your ultimate resource for fresh and exciting field day ideas.
+Ultimate Field Day is a web application designed to alleviate the stress of organizing field day events and to introduce a plethora of unique and engaging games. Whether you're looking to spice up a family gathering or add a twist to a community event, Ultimate Field Day is your ultimate resource for fresh and exciting field day ideas.
 
 ## Key Features:
 
