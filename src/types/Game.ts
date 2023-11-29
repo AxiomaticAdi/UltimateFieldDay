@@ -8,4 +8,6 @@ export type Game = {
     equipment: string[];
     minPlayerCount: number;
     maxPlayerCount?: number;
+    setup?: string;
+    rules?: string;
 };

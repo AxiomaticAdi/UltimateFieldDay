@@ -31,6 +31,9 @@ export function sheetRowToMatch(cell: SheetRow, id: string): Game {
     const minCount = Number(cell.c[5]?.v) ?? 0;
     const maxCount = Number(cell.c[6]?.v) ?? 0;
 
+    const setup = String(cell.c[7]?.v) ?? "";
+    const rules = String(cell.c[8]?.v) ?? "";
+
     return {
         rowId: rowId,
         gameId: gameId,
@@ -39,6 +42,8 @@ export function sheetRowToMatch(cell: SheetRow, id: string): Game {
         name: name,
         setting: setting,
         maxPlayerCount: maxCount,
+        setup: setup,
+        rules: rules,
     };
 }
 
