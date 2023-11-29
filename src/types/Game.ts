@@ -10,4 +10,5 @@ export type Game = {
     maxPlayerCount?: number;
     setup?: string;
     rules?: string;
+    yt?: string;
 };

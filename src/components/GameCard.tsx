@@ -1,6 +1,19 @@
 import { Game } from "../types/Game";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Link } from "react-router-dom";
+
+function fieldExists(field: string | undefined): boolean {
+    if (
+        field === undefined ||
+        field === null ||
+        field === "undefined" ||
+        field === "null"
+    ) {
+        return false;
+    }
+    return true;
+}
 
 export default function GameCardModal({ game }: { game: Game }) {
     const [open, setOpen] = useState(false);
@@ -51,29 +64,37 @@ export default function GameCardModal({ game }: { game: Game }) {
                                         </div>
                                         <div className="mt-3 text-center sm:mt-5">
                                             <div className="flex flex-col gap-4 text-sm">
-                                                {game.setup &&
-                                                    game.setup !==
-                                                        "undefined" && (
-                                                        <div>
-                                                            <strong>
-                                                                Setup:{" "}
-                                                            </strong>
-                                                            <div className="text-left">
-                                                                {game.setup}
-                                                            </div>
+                                                {fieldExists(game.setup) && (
+                                                    <div>
+                                                        <strong>Setup: </strong>
+                                                        <div className="text-left">
+                                                            {game.setup}
                                                         </div>
-                                                    )}
+                                                    </div>
+                                                )}
 
-                                                {game.rules &&
-                                                    game.rules !==
-                                                        "undefined" && (
-                                                        <div>
+                                                {fieldExists(game.rules) && (
+                                                    <div>
+                                                        <strong>Rules: </strong>
+                                                        <div className="text-left">
+                                                            {game.rules}
+                                                        </div>
+                                                    </div>
+                                                )}
+
+                                                {game.yt &&
+                                                    fieldExists(game.yt) && (
+                                                        <div className="flex flex-col items-center justify-center">
                                                             <strong>
-                                                                Rules:{" "}
+                                                                Video
+                                                                explainers:{" "}
                                                             </strong>
-                                                            <div className="text-left">
-                                                                {game.rules}
-                                                            </div>
+                                                            <Link to={game.yt}>
+                                                                <img
+                                                                    src="/yt.svg"
+                                                                    className="mt-3 h-5 w-auto"
+                                                                />
+                                                            </Link>
                                                         </div>
                                                     )}
                                             </div>
