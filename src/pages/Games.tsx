@@ -26,11 +26,6 @@ export default function Games() {
             // Toggle the current setting
             newSetting[changedSetting] = !prevSetting[changedSetting];
 
-            // If neither are selected, set both to true
-            if (!newSetting.Indoor && !newSetting.Outdoor) {
-                newSetting.Indoor = newSetting.Outdoor = true;
-            }
-
             console.log(
                 "NewSetting is: " +
                     "Indoor: " +
@@ -60,7 +55,11 @@ export default function Games() {
         // Filter logic
         if (gamesList) {
             const filteredGames = gamesList.filter((game) => {
-                if (game.setting === "Any") return true;
+                if (
+                    (setting.Indoor || setting.Outdoor) &&
+                    game.setting === "Any"
+                )
+                    return true;
                 if (setting.Indoor && game.setting === "Indoor") return true;
                 if (setting.Outdoor && game.setting === "Outdoor") return true;
                 return false;
