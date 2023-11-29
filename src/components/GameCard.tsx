@@ -44,23 +44,38 @@ export default function GameCardModal({ game }: { game: Game }) {
                                         <div className="mx-auto flex items-center justify-center">
                                             <Dialog.Title
                                                 as="h3"
-                                                className="text-base font-semibold leading-6 text-gray-900"
+                                                className="text-base font-bold leading-6 text-gray-900"
                                             >
                                                 {game.name}
                                             </Dialog.Title>
                                         </div>
                                         <div className="mt-3 text-center sm:mt-5">
-                                            <div className="mt-2">
-                                                <div>
-                                                    Setting: {game.setting}
-                                                </div>
-                                                <div>
-                                                    Equipment: {game.equipment}
-                                                </div>
-                                                <div>
-                                                    Min. players:{" "}
-                                                    {game.minPlayerCount}
-                                                </div>
+                                            <div className="flex flex-col gap-4 text-sm">
+                                                {game.setup &&
+                                                    game.setup !==
+                                                        "undefined" && (
+                                                        <div>
+                                                            <strong>
+                                                                Setup:{" "}
+                                                            </strong>
+                                                            <div className="text-left">
+                                                                {game.setup}
+                                                            </div>
+                                                        </div>
+                                                    )}
+
+                                                {game.rules &&
+                                                    game.rules !==
+                                                        "undefined" && (
+                                                        <div>
+                                                            <strong>
+                                                                Rules:{" "}
+                                                            </strong>
+                                                            <div className="text-left">
+                                                                {game.rules}
+                                                            </div>
+                                                        </div>
+                                                    )}
                                             </div>
                                         </div>
                                     </div>
