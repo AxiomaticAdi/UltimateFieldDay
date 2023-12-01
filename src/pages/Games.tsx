@@ -4,6 +4,7 @@ import { Game } from "../types/Game";
 import AppFrame from "../components/AppFrame";
 import GameCard from "../components/GameCard";
 import FilterSection from "../components/FilterSection";
+import { Setting } from "../types/Setting";
 
 export default function Games() {
     const [gamesList, setGameList] = useState<Game[] | undefined>();
@@ -14,7 +15,7 @@ export default function Games() {
     // Filters
     const [setting, setSetting] = useState({ Indoor: true, Outdoor: true });
 
-    const handleSettingChange = (changedSetting: string) => {
+    const handleSettingChange = (changedSetting: Setting) => {
         // Solve type errors - exit if not correct string
         if (changedSetting !== "Indoor" && changedSetting !== "Outdoor") {
             return;
@@ -45,24 +46,25 @@ export default function Games() {
         );
     };
 
-    if (gamesList === undefined) {
-        GamesService.fetchGamesAsync().then((res) => {
-            setGameList(res);
-        });
-    }
+    // Fetch games on first load
+    useEffect(() => {
+        if (gamesList === undefined) {
+            GamesService.fetchGamesAsync().then((res) => {
+                setGameList(res);
+            });
+        }
+    });
 
     useEffect(() => {
         // Filter logic
         if (gamesList) {
             const filteredGames = gamesList.filter((game) => {
-                if (
-                    (setting.Indoor || setting.Outdoor) &&
-                    game.setting === "Any"
-                )
-                    return true;
-                if (setting.Indoor && game.setting === "Indoor") return true;
-                if (setting.Outdoor && game.setting === "Outdoor") return true;
-                return false;
+                return (
+                    (setting.Indoor && game.setting === "Indoor") ||
+                    (setting.Outdoor && game.setting === "Outdoor") ||
+                    ((setting.Indoor || setting.Outdoor) &&
+                        game.setting === "Any")
+                );
             });
 
             setFilteredGamesList(filteredGames);
