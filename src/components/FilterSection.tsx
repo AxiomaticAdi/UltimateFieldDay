@@ -18,6 +18,7 @@ interface FilterSection {
     setIndoorFilter: (value: boolean) => void;
     outdoorFilter: boolean;
     setOutdoorFilter: (value: boolean) => void;
+    resetFilters: () => void;
 }
 
 export default function FilterSection({
@@ -25,6 +26,7 @@ export default function FilterSection({
     setIndoorFilter,
     outdoorFilter,
     setOutdoorFilter,
+    resetFilters,
 }: FilterSection) {
     return (
         <div className="py-3">
@@ -49,6 +51,7 @@ export default function FilterSection({
                             <button
                                 type="button"
                                 className="text-gray-500 hover:text-gray-200"
+                                onClick={resetFilters}
                             >
                                 Reset
                             </button>
