@@ -7,6 +7,7 @@ import "./index.css";
 
 import ErrorPage from "./pages/ErrorPage.tsx";
 import Games from "./pages/Games.tsx";
+import AboutPage from "./pages/AboutPage.tsx";
 
 const router = createHashRouter([
     {
@@ -17,6 +18,11 @@ const router = createHashRouter([
     {
         path: "/games",
         element: <Games />,
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/about",
+        element: <AboutPage />,
         errorElement: <ErrorPage />,
     },
 ]);
