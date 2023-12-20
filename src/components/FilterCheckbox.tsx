@@ -1,10 +1,10 @@
 import React from "react";
 
 interface FilterCheckboxProps {
-    filterName: string; // The name of the filter
-    checked: boolean; // The current state of the checkbox
-    setChecked: (value: boolean) => void; // Function to update the state
-    label: string; // Display label for the checkbox
+    filterName: string;
+    checked: boolean;
+    setChecked: (value: boolean) => void;
+    label: string;
 }
 
 const FilterCheckbox: React.FC<FilterCheckboxProps> = ({
