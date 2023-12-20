@@ -1,5 +1,5 @@
 import { GamesService } from "../services/GamesService";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Game } from "../types/Game";
 import AppFrame from "../components/AppFrame";
 import GameCard from "../components/GameCard";
@@ -14,6 +14,11 @@ export default function Games() {
     // Filters
     const [indoorFilter, setIndoorFilter] = useState<boolean>(true);
     const [outdoorFilter, setOutdoorFilter] = useState<boolean>(true);
+
+    const resetFilters = useCallback(() => {
+        setIndoorFilter(true);
+        setOutdoorFilter(true);
+    }, [setIndoorFilter, setOutdoorFilter]);
 
     // Fetch games on first load
     useEffect(() => {
@@ -56,6 +61,7 @@ export default function Games() {
                     setIndoorFilter={setIndoorFilter}
                     outdoorFilter={outdoorFilter}
                     setOutdoorFilter={setOutdoorFilter}
+                    resetFilters={resetFilters}
                 />
 
                 <div className="flex flex-wrap items-center justify-center">
