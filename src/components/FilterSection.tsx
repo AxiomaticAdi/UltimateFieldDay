@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
+import FilterCheckbox from "./FilterCheckbox";
 
 const sortOptions = [
     { name: "A - Z", href: "#", current: true },
@@ -27,7 +28,6 @@ export default function FilterSection({
 }: FilterSection) {
     return (
         <div className="py-3">
-            {/* Filters */}
             <Disclosure
                 as="section"
                 aria-labelledby="filter-heading"
@@ -60,24 +60,19 @@ export default function FilterSection({
                         <div className="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6">
                             <fieldset>
                                 <legend className="font-bold">Setting</legend>
-                                <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
-                                    <div className="flex items-center text-base sm:text-sm">
-                                        <input
-                                            name="indoorFilterCheckbox"
-                                            type="checkbox"
-                                            checked={indoorFilter}
-                                            className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                            onChange={() =>
-                                                setIndoorFilter(!indoorFilter)
-                                            }
-                                        />
-                                        <label
-                                            htmlFor={`setting-indoorFilter`}
-                                            className="ml-3 min-w-0 flex-1 text-gray-600"
-                                        >
-                                            Indoor
-                                        </label>
-                                    </div>
+                                <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4 sm:text-sm">
+                                    <FilterCheckbox
+                                        filterName={"indoorFilterFilter"}
+                                        checked={indoorFilter}
+                                        setChecked={setIndoorFilter}
+                                        label={"Indoor"}
+                                    />
+                                    <FilterCheckbox
+                                        filterName={"outdoorFilter"}
+                                        checked={outdoorFilter}
+                                        setChecked={setOutdoorFilter}
+                                        label={"Outdoor"}
+                                    />
                                 </div>
                             </fieldset>
                         </div>

@@ -51,23 +51,12 @@ export default function Games() {
     return (
         <AppFrame>
             <div className="w-full">
-                <FilterSection />
-
-                <div className="flex text-white">
-                    <input
-                        type="checkbox"
-                        checked={indoorFilter}
-                        onChange={() => setIndoorFilter(!indoorFilter)}
-                    />
-                    <label>Indoor</label>
-
-                    <input
-                        type="checkbox"
-                        checked={outdoorFilter}
-                        onChange={() => setOutdoorFilter(!outdoorFilter)}
-                    />
-                    <label>Outdoor</label>
-                </div>
+                <FilterSection
+                    indoorFilter={indoorFilter}
+                    setIndoorFilter={setIndoorFilter}
+                    outdoorFilter={outdoorFilter}
+                    setOutdoorFilter={setOutdoorFilter}
+                />
 
                 <div className="flex flex-wrap items-center justify-center">
                     {filteredGamesList.map((value) => {
