@@ -1,7 +1,11 @@
+import { useRef } from "react";
 import AppFrame from "../components/AppFrame";
 import InputTextBox from "../components/form/InputTextBox";
 
 export default function SubmitGamePage() {
+    const minPlayerCountRef = useRef<HTMLInputElement>(null);
+    const maxPlayerCountRef = useRef<HTMLInputElement>(null);
+
     return (
         <AppFrame>
             <form className="px-4">
@@ -77,23 +81,99 @@ export default function SubmitGamePage() {
 
                             <div className="sm:col-span-3">
                                 <label
-                                    htmlFor="gameSetting"
+                                    htmlFor="gameMinimumPlayers"
                                     className="block text-sm font-medium leading-6 "
                                 >
-                                    Setting
+                                    Minimum Player Count
                                 </label>
                                 <div className="mt-2">
-                                    <select
-                                        id="gameSetting"
-                                        name="setting"
-                                        className="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                    >
-                                        <option>Indoor</option>
-                                        <option>Outdoor</option>
-                                        <option>Any</option>
-                                    </select>
+                                    <input
+                                        type="number"
+                                        ref={minPlayerCountRef}
+                                        min="0"
+                                        max="50"
+                                        placeholder="2"
+                                        className="block w-1/2 rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
                                 </div>
                             </div>
+
+                            <div className="sm:col-span-3">
+                                <label
+                                    htmlFor="gameMinimumPlayers"
+                                    className="block text-sm font-medium leading-6 "
+                                >
+                                    Maximum Player Count
+                                </label>
+                                <div className="mt-2">
+                                    <input
+                                        type="number"
+                                        ref={maxPlayerCountRef}
+                                        min="0"
+                                        max="100"
+                                        placeholder="100"
+                                        className="block w-1/2 rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    />
+                                </div>
+                            </div>
+
+                            <fieldset className="col-span-full">
+                                <legend className="text-sm font-semibold leading-6">
+                                    Setting
+                                </legend>
+                                <p className="mt-1 text-sm leading-6 text-gray-400">
+                                    Where should this game be played?
+                                </p>
+                                <div className="mt-2 space-y-6">
+                                    <div className="flex flex-col gap-1">
+                                        <div className="flex items-center gap-x-3">
+                                            <input
+                                                id="setting-indoor"
+                                                name="setting"
+                                                type="radio"
+                                                value="indoor"
+                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            />
+                                            <label
+                                                htmlFor="setting-indoor"
+                                                className="block text-sm font-medium leading-6 "
+                                            >
+                                                Indoor
+                                            </label>
+                                        </div>
+                                        <div className="flex items-center gap-x-3">
+                                            <input
+                                                id="setting-outdoor"
+                                                name="setting"
+                                                type="radio"
+                                                value="outdoor"
+                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            />
+                                            <label
+                                                htmlFor="setting-outdoor"
+                                                className="block text-sm font-medium leading-6 "
+                                            >
+                                                Outdoor
+                                            </label>
+                                        </div>
+                                        <div className="flex items-center gap-x-3">
+                                            <input
+                                                id="setting-any"
+                                                name="setting"
+                                                type="radio"
+                                                value="any"
+                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                            />
+                                            <label
+                                                htmlFor="setting-any"
+                                                className="block text-sm font-medium leading-6 "
+                                            >
+                                                Any
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
 
@@ -288,59 +368,6 @@ export default function SubmitGamePage() {
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset>
-                                <legend className="text-sm font-semibold leading-6 ">
-                                    Push Notifications
-                                </legend>
-                                <p className="mt-1 text-sm leading-6 text-gray-600">
-                                    These are delivered via SMS to your mobile
-                                    phone.
-                                </p>
-                                <div className="mt-6 space-y-6">
-                                    <div className="flex items-center gap-x-3">
-                                        <input
-                                            id="push-everything"
-                                            name="push-notifications"
-                                            type="radio"
-                                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                        />
-                                        <label
-                                            htmlFor="push-everything"
-                                            className="block text-sm font-medium leading-6 "
-                                        >
-                                            Everything
-                                        </label>
-                                    </div>
-                                    <div className="flex items-center gap-x-3">
-                                        <input
-                                            id="push-email"
-                                            name="push-notifications"
-                                            type="radio"
-                                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                        />
-                                        <label
-                                            htmlFor="push-email"
-                                            className="block text-sm font-medium leading-6 "
-                                        >
-                                            Same as email
-                                        </label>
-                                    </div>
-                                    <div className="flex items-center gap-x-3">
-                                        <input
-                                            id="push-nothing"
-                                            name="push-notifications"
-                                            type="radio"
-                                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                        />
-                                        <label
-                                            htmlFor="push-nothing"
-                                            className="block text-sm font-medium leading-6 "
-                                        >
-                                            No push notifications
-                                        </label>
-                                    </div>
-                                </div>
-                            </fieldset>
                         </div>
                     </div>
                 </div>
@@ -348,7 +375,7 @@ export default function SubmitGamePage() {
                 <div className="mt-6 flex items-center justify-end gap-x-6">
                     <button
                         type="button"
-                        className="text-sm font-semibold leading-6 "
+                        className="text-sm font-semibold leading-6 text-white "
                     >
                         Cancel
                     </button>
