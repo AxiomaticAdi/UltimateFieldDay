@@ -1,20 +1,46 @@
 import { GamesService } from "../services/GamesService";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Game } from "../types/Game";
 import AppFrame from "../components/AppFrame";
 import GameCard from "../components/GameCard";
+import FilterSection from "../components/FilterSection";
 
 export default function Games() {
     const [gamesList, setGameList] = useState<Game[] | undefined>();
+    const [filteredGamesList, setFilteredGamesList] = useState<
+        Game[] | undefined
+    >();
 
-    if (gamesList === undefined) {
-        GamesService.fetchGamesAsync().then((res) => {
-            setGameList(res);
-        });
-    }
+    // Filters
+    const [indoorFilter, setIndoorFilter] = useState<boolean>(true);
+    const [outdoorFilter, setOutdoorFilter] = useState<boolean>(true);
+
+    // Fetch games on first load
+    useEffect(() => {
+        if (gamesList === undefined) {
+            GamesService.fetchGamesAsync().then((res) => {
+                setGameList(res);
+            });
+        }
+    });
+
+    useEffect(() => {
+        // Filter logic
+        if (gamesList) {
+            const filteredGames = gamesList.filter((game) => {
+                return (
+                    (indoorFilter && game.setting === "Indoor") ||
+                    (outdoorFilter && game.setting === "Outdoor") ||
+                    ((indoorFilter || outdoorFilter) && game.setting === "Any")
+                );
+            });
+
+            setFilteredGamesList(filteredGames);
+        }
+    }, [gamesList, indoorFilter, outdoorFilter]);
 
     // if there are no games hydrated yet, render blank page
-    if (gamesList === undefined) {
+    if (filteredGamesList === undefined) {
         return (
             <AppFrame>
                 <div></div>
@@ -24,10 +50,30 @@ export default function Games() {
 
     return (
         <AppFrame>
-            <div className="flex flex-row flex-wrap justify-center self-center">
-                {gamesList.map((value) => {
-                    return <GameCard key={value.gameId} game={value} />;
-                })}
+            <div className="w-full">
+                <FilterSection />
+
+                <div className="flex text-white">
+                    <input
+                        type="checkbox"
+                        checked={indoorFilter}
+                        onChange={() => setIndoorFilter(!indoorFilter)}
+                    />
+                    <label>Indoor</label>
+
+                    <input
+                        type="checkbox"
+                        checked={outdoorFilter}
+                        onChange={() => setOutdoorFilter(!outdoorFilter)}
+                    />
+                    <label>Outdoor</label>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center">
+                    {filteredGamesList.map((value) => {
+                        return <GameCard key={value.gameId} game={value} />;
+                    })}
+                </div>
             </div>
         </AppFrame>
     );
