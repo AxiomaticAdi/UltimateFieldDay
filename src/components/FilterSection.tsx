@@ -2,12 +2,6 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
 
-const filters = {
-    setting: [
-        { value: "Indoor", label: "Indoor", checked: false },
-        { value: "Outdoor", label: "Outdoor", checked: false },
-    ],
-};
 const sortOptions = [
     { name: "A - Z", href: "#", current: true },
     { name: "Best Rating", href: "#", current: false },
@@ -18,7 +12,19 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-export default function FilterSection() {
+interface FilterSection {
+    indoorFilter: boolean;
+    setIndoorFilter: (value: boolean) => void;
+    outdoorFilter: boolean;
+    setOutdoorFilter: (value: boolean) => void;
+}
+
+export default function FilterSection({
+    indoorFilter,
+    setIndoorFilter,
+    outdoorFilter,
+    setOutdoorFilter,
+}: FilterSection) {
     return (
         <div className="py-3">
             {/* Filters */}
@@ -32,21 +38,19 @@ export default function FilterSection() {
                 </h2>
                 <div className="relative col-start-1 row-start-1 py-4">
                     <div className="mx-auto flex max-w-7xl space-x-6 divide-x divide-indigo-400 px-4 text-sm sm:px-6 lg:px-8">
-                        <div>
-                            <Disclosure.Button className="group flex items-center font-medium text-gray-500 hover:text-gray-200">
-                                <FunnelIcon
-                                    className="mr-2 h-5 w-5 flex-none"
-                                    aria-hidden="true"
-                                />
-                                Filters
-                            </Disclosure.Button>
-                        </div>
+                        <Disclosure.Button className="group flex items-center font-medium text-gray-500 hover:text-gray-200">
+                            <FunnelIcon
+                                className="mr-2 h-5 w-5 flex-none"
+                                aria-hidden="true"
+                            />
+                            Filters
+                        </Disclosure.Button>
                         <div className="pl-6">
                             <button
                                 type="button"
                                 className="text-gray-500 hover:text-gray-200"
                             >
-                                Clear all
+                                Reset
                             </button>
                         </div>
                     </div>
@@ -57,36 +61,23 @@ export default function FilterSection() {
                             <fieldset>
                                 <legend className="font-bold">Setting</legend>
                                 <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4">
-                                    {filters.setting.map(
-                                        (option, optionIdx) => (
-                                            <div
-                                                key={option.value}
-                                                className="flex items-center text-base sm:text-sm"
-                                            >
-                                                <input
-                                                    id={`setting-${optionIdx}`}
-                                                    name="setting[]"
-                                                    defaultValue={option.value}
-                                                    type="checkbox"
-                                                    className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                                    defaultChecked={
-                                                        option.checked
-                                                    }
-                                                    onChange={(e) =>
-                                                        onSettingFilterChange(
-                                                            option.value,
-                                                        )
-                                                    }
-                                                />
-                                                <label
-                                                    htmlFor={`setting-${optionIdx}`}
-                                                    className="ml-3 min-w-0 flex-1 text-gray-600"
-                                                >
-                                                    {option.label}
-                                                </label>
-                                            </div>
-                                        ),
-                                    )}
+                                    <div className="flex items-center text-base sm:text-sm">
+                                        <input
+                                            name="indoorFilterCheckbox"
+                                            type="checkbox"
+                                            checked={indoorFilter}
+                                            className="h-4 w-4 flex-shrink-0 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                            onChange={() =>
+                                                setIndoorFilter(!indoorFilter)
+                                            }
+                                        />
+                                        <label
+                                            htmlFor={`setting-indoorFilter`}
+                                            className="ml-3 min-w-0 flex-1 text-gray-600"
+                                        >
+                                            Indoor
+                                        </label>
+                                    </div>
                                 </div>
                             </fieldset>
                         </div>
