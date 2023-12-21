@@ -8,7 +8,6 @@ interface RadioOptionsProps {
     title: string;
     options: RadioOption[];
     description?: string;
-    value: string;
     onChange: (value: string) => void;
     required?: boolean;
 }
@@ -18,7 +17,6 @@ function RadioOptions({
     title,
     options,
     description,
-    value,
     onChange,
     required = false,
 }: RadioOptionsProps) {
@@ -38,8 +36,6 @@ function RadioOptions({
                                 id={`${name}-${option.value}`}
                                 name={name}
                                 type="radio"
-                                value={option.value}
-                                checked={value === option.value}
                                 onChange={() => onChange(option.value)}
                                 className="h-4 w-4 border-gray-300 bg-transparent text-indigo-600 focus:ring-indigo-600"
                                 required={required}

@@ -6,6 +6,18 @@ import NumberInput from "../components/form/NumberInput";
 import { Link } from "react-router-dom";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
+const gameSettingOptions = [
+    { label: "Indoor", value: "indoor" },
+    { label: "Outdoor", value: "outdoor" },
+    { label: "Any", value: "any" },
+];
+
+const gameActivityLevelOptions = [
+    { label: "Low", value: "low" },
+    { label: "Medium", value: "medium" },
+    { label: "High", value: "high" },
+];
+
 export default function SubmitGamePage() {
     const [gameTitle, setGameTitle] = useState<string>("");
     const [gameSetup, setGameSetup] = useState<string>("");
@@ -77,7 +89,8 @@ export default function SubmitGamePage() {
                                             type="text"
                                             name="gameTitle"
                                             id="gameTitle"
-                                            className="block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                            className="block border-0 bg-transparent py-1.5 pl-2 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                            // "block w-1/2 rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             placeholder="Best Game Ever"
                                             value={gameTitle}
                                             onChange={(e) =>
@@ -141,12 +154,7 @@ export default function SubmitGamePage() {
                                 name="setting"
                                 title="Setting"
                                 description="Where should this game be played?"
-                                options={[
-                                    { label: "Indoor", value: "indoor" },
-                                    { label: "Outdoor", value: "outdoor" },
-                                    { label: "Any", value: "any" },
-                                ]}
-                                value={gameSetting}
+                                options={gameSettingOptions}
                                 onChange={setGameSetting}
                                 required={true}
                             />
@@ -155,12 +163,7 @@ export default function SubmitGamePage() {
                                 name="gameActivityLevel"
                                 title="Activity Level"
                                 description="What level of exertion is typical?"
-                                options={[
-                                    { label: "Low", value: "Low" },
-                                    { label: "Medium", value: "Medium" },
-                                    { label: "High", value: "High" },
-                                ]}
-                                value={gameActivityLevel}
+                                options={gameActivityLevelOptions}
                                 onChange={setGameActivityLevel}
                                 required={true}
                             />
@@ -183,7 +186,7 @@ export default function SubmitGamePage() {
                             <div className="sm:col-span-4">
                                 <label
                                     htmlFor="email"
-                                    className="block text-sm font-medium leading-6 "
+                                    className="block text-sm font-medium leading-6"
                                 >
                                     Email address
                                 </label>
