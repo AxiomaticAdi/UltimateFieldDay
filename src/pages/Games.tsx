@@ -5,6 +5,8 @@ import AppFrame from "../components/AppFrame";
 import GameCard from "../components/GameCard";
 import FilterSection from "../components/FilterSection";
 
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 export default function Games() {
     const [gamesList, setGameList] = useState<Game[] | undefined>();
     const [filteredGamesList, setFilteredGamesList] = useState<
@@ -14,11 +16,13 @@ export default function Games() {
     // Filters
     const [indoorFilter, setIndoorFilter] = useState<boolean>(true);
     const [outdoorFilter, setOutdoorFilter] = useState<boolean>(true);
-
     const resetFilters = useCallback(() => {
         setIndoorFilter(true);
         setOutdoorFilter(true);
     }, [setIndoorFilter, setOutdoorFilter]);
+
+    // Animation
+    const [parentGameCards] = useAutoAnimate();
 
     // Fetch games on first load
     useEffect(() => {
@@ -64,7 +68,10 @@ export default function Games() {
                     resetFilters={resetFilters}
                 />
 
-                <div className="flex flex-wrap items-center justify-center">
+                <div
+                    ref={parentGameCards}
+                    className="flex flex-wrap items-center justify-center"
+                >
                     {filteredGamesList.map((value) => {
                         return <GameCard key={value.gameId} game={value} />;
                     })}

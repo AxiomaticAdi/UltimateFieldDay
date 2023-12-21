@@ -13,6 +13,7 @@
         "deploy": "gh-pages -d dist"
     },
     "dependencies": {
+        "@formkit/auto-animate": "^0.8.1",
         "@headlessui/react": "^1.7.17",
         "@heroicons/react": "^2.0.18",
         "axios": "^1.6.2",
