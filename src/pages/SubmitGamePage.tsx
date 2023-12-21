@@ -3,6 +3,8 @@ import AppFrame from "../components/AppFrame";
 import TextBoxInput from "../components/form/TextBoxInput";
 import RadioOptions from "../components/form/RadioOptions";
 import NumberInput from "../components/form/NumberInput";
+import { Link } from "react-router-dom";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
 
 export default function SubmitGamePage() {
     const [gameTitle, setGameTitle] = useState<string>("");
@@ -28,7 +30,7 @@ export default function SubmitGamePage() {
                     <div className="px-6 py-24 sm:py-32 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
                             <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
-                                Submit a game!
+                                Submit a game
                             </h2>
                             <p className="mt-6 text-lg leading-8">
                                 Share your favorite field day games with our
@@ -108,8 +110,8 @@ export default function SubmitGamePage() {
                                 label={"Minimum Player Count"}
                                 name={"gameMinPlayers"}
                                 placeholder={"2"}
-                                min={0}
-                                max={50}
+                                min={1}
+                                max={100}
                                 value={gameMinPlayers}
                                 onChange={setGameMinPlayers}
                             />
@@ -118,7 +120,7 @@ export default function SubmitGamePage() {
                                 label={"Maximum Player Count"}
                                 name={"gameMaxPlayers"}
                                 placeholder={"100"}
-                                min={0}
+                                min={1}
                                 max={100}
                                 value={gameMaxPlayers}
                                 onChange={setGameMaxPlayers}
@@ -133,17 +135,23 @@ export default function SubmitGamePage() {
                                     { label: "Outdoor", value: "outdoor" },
                                     { label: "Any", value: "any" },
                                 ]}
+                                value={gameSetting}
+                                onChange={setGameSetting}
+                                required={true}
                             />
 
                             <RadioOptions
                                 name="gameActivityLevel"
                                 title="Activity Level"
-                                description="Where level of exertion is required?"
+                                description="What level of exertion is typical?"
                                 options={[
                                     { label: "Low", value: "Low" },
                                     { label: "Medium", value: "Medium" },
                                     { label: "High", value: "High" },
                                 ]}
+                                value={gameActivityLevel}
+                                onChange={setGameActivityLevel}
+                                required={true}
                             />
                         </div>
                     </div>
@@ -156,7 +164,7 @@ export default function SubmitGamePage() {
                             <p className="mt-1 text-sm leading-6 text-gray-400">
                                 If you'd like to receive an email if your game
                                 is added to our site, include your contact
-                                information here
+                                information here.
                             </p>
                         </div>
 
@@ -168,13 +176,19 @@ export default function SubmitGamePage() {
                                 >
                                     Email address
                                 </label>
-                                <div className="mt-2">
+                                <div className="relative mt-2 rounded-md shadow-sm">
+                                    <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                        <EnvelopeIcon
+                                            className="h-5 w-5 text-gray-400"
+                                            aria-hidden="true"
+                                        />
+                                    </div>
                                     <input
                                         id="email"
                                         name="email"
                                         type="email"
                                         autoComplete="email"
-                                        className="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-0 bg-transparent py-1.5 pl-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
                             </div>
@@ -182,19 +196,20 @@ export default function SubmitGamePage() {
                     </div>
                 </div>
 
-                <div className="mt-6 flex items-center justify-end gap-x-6">
-                    <button
-                        type="button"
-                        className="text-sm font-semibold leading-6 text-white "
-                    >
-                        Cancel
-                    </button>
+                <div className="my-6 flex flex-col items-center justify-center gap-y-6">
                     <button
                         type="submit"
                         className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                        Save
+                        Submit
                     </button>
+                    <Link
+                        to="/games"
+                        className="text-sm font-semibold leading-6 text-white"
+                    >
+                        <span aria-hidden="true">&larr;</span> Nah, take me back
+                        to the games!
+                    </Link>
                 </div>
             </form>
         </AppFrame>
