@@ -3,13 +3,15 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
 import FilterCheckbox from "./FilterCheckbox";
 
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 const sortOptions = [
     { name: "A - Z", href: "#", current: true },
     { name: "Best Rating", href: "#", current: false },
     { name: "Newest", href: "#", current: false },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");
 }
 
@@ -28,12 +30,16 @@ export default function FilterSection({
     setOutdoorFilter,
     resetFilters,
 }: FilterSection) {
+    // Animation
+    const [parentFilterSection] = useAutoAnimate();
+
     return (
         <div className="py-3">
             <Disclosure
                 as="section"
                 aria-labelledby="filter-heading"
                 className="grid items-center"
+                ref={parentFilterSection}
             >
                 <h2 id="filter-heading" className="sr-only">
                     Filters
