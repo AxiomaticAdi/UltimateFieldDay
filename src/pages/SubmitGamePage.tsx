@@ -38,7 +38,7 @@ export default function SubmitGamePage() {
     return (
         <AppFrame>
             <form onSubmit={handleSubmit} className="px-4">
-                <div className="space-y-12 text-white">
+                <div className="text-white">
                     <div className="px-6 py-24 sm:py-32 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
                             <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
@@ -47,8 +47,7 @@ export default function SubmitGamePage() {
                             <p className="mt-6 text-lg leading-8">
                                 Share your favorite field day games with our
                                 community! Submit your game ideas and spread the
-                                joy of fun and competitive play for everyone to
-                                enjoy.
+                                joy of play for everyone to enjoy.
                             </p>
                         </div>
                     </div>
@@ -111,7 +110,7 @@ export default function SubmitGamePage() {
                             <TextBoxInput
                                 title={"Equipment"}
                                 placeholder={
-                                    "List out any required equipment, separated by commas\ne.g. hula hoop, basketball, spoon"
+                                    "List out required equipment separated by commas\ne.g. hula hoop, basketball, spoon"
                                 }
                                 value={gameEquipment}
                                 onChange={setGameEquipment}
