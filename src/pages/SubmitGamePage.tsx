@@ -1,10 +1,25 @@
-import { useRef } from "react";
+import { useState } from "react";
 import AppFrame from "../components/AppFrame";
-import InputTextBox from "../components/form/InputTextBox";
+import TextBoxInput from "../components/form/TextBoxInput";
+import RadioOptions from "../components/form/RadioOptions";
+import NumberInput from "../components/form/NumberInput";
 
 export default function SubmitGamePage() {
-    const minPlayerCountRef = useRef<HTMLInputElement>(null);
-    const maxPlayerCountRef = useRef<HTMLInputElement>(null);
+    const [gameTitle, setGameTitle] = useState<string>("");
+    const [gameSetup, setGameSetup] = useState<string>("");
+    const [gameRules, setGameRules] = useState<string>("");
+    const [gameEquipment, setGameEquipment] = useState<string>("");
+    const [gameMinPlayers, setGameMinPlayers] = useState<number>();
+    const [gameMaxPlayers, setGameMaxPlayers] = useState<number>();
+    const [gameSetting, setGameSetting] = useState("");
+    const [gameActivityLevel, setGameActivityLevel] = useState<string>("");
+    const [userEmail, setUserEmail] = useState("");
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        console.log();
+    };
 
     return (
         <AppFrame>
@@ -49,131 +64,87 @@ export default function SubmitGamePage() {
                                             type="text"
                                             name="gameTitle"
                                             id="gameTitle"
-                                            className="block flex-1 border-0 bg-transparent py-1.5 pl-1  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                                            className="block flex-1 border-0 bg-transparent py-1.5 pl-1 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                             placeholder="Best Game Ever"
+                                            value={gameTitle}
+                                            onChange={(e) =>
+                                                setGameTitle(e.target.value)
+                                            }
                                             required={true}
                                         />
                                     </div>
                                 </div>
                             </div>
 
-                            <InputTextBox
+                            <TextBoxInput
                                 title={"Setup"}
                                 placeholder={
                                     "Describe play area setup and any suggested equipment"
                                 }
+                                value={gameSetup}
+                                onChange={setGameSetup}
                                 isRequired={true}
                             />
 
-                            <InputTextBox
+                            <TextBoxInput
                                 title={"Rules"}
                                 placeholder={"Outline the rules of the game"}
+                                value={gameRules}
+                                onChange={setGameRules}
                                 isRequired={true}
                             />
 
-                            <InputTextBox
+                            <TextBoxInput
                                 title={"Equipment"}
                                 placeholder={
                                     "List out any required equipment, separated by commas\ne.g. hula hoop, basketball, spoon"
                                 }
+                                value={gameEquipment}
+                                onChange={setGameEquipment}
                                 isRequired={false}
                             />
 
-                            <div className="sm:col-span-3">
-                                <label
-                                    htmlFor="gameMinimumPlayers"
-                                    className="block text-sm font-medium leading-6 "
-                                >
-                                    Minimum Player Count
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="number"
-                                        ref={minPlayerCountRef}
-                                        min="0"
-                                        max="50"
-                                        placeholder="2"
-                                        className="block w-1/2 rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                            <NumberInput
+                                label={"Minimum Player Count"}
+                                name={"gameMinPlayers"}
+                                placeholder={"2"}
+                                min={0}
+                                max={50}
+                                value={gameMinPlayers}
+                                onChange={setGameMinPlayers}
+                            />
 
-                            <div className="sm:col-span-3">
-                                <label
-                                    htmlFor="gameMinimumPlayers"
-                                    className="block text-sm font-medium leading-6 "
-                                >
-                                    Maximum Player Count
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="number"
-                                        ref={maxPlayerCountRef}
-                                        min="0"
-                                        max="100"
-                                        placeholder="100"
-                                        className="block w-1/2 rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
+                            <NumberInput
+                                label={"Maximum Player Count"}
+                                name={"gameMaxPlayers"}
+                                placeholder={"100"}
+                                min={0}
+                                max={100}
+                                value={gameMaxPlayers}
+                                onChange={setGameMaxPlayers}
+                            />
 
-                            <fieldset className="col-span-full">
-                                <legend className="text-sm font-semibold leading-6">
-                                    Setting
-                                </legend>
-                                <p className="mt-1 text-sm leading-6 text-gray-400">
-                                    Where should this game be played?
-                                </p>
-                                <div className="mt-2 space-y-6">
-                                    <div className="flex flex-col gap-1">
-                                        <div className="flex items-center gap-x-3">
-                                            <input
-                                                id="setting-indoor"
-                                                name="setting"
-                                                type="radio"
-                                                value="indoor"
-                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            />
-                                            <label
-                                                htmlFor="setting-indoor"
-                                                className="block text-sm font-medium leading-6 "
-                                            >
-                                                Indoor
-                                            </label>
-                                        </div>
-                                        <div className="flex items-center gap-x-3">
-                                            <input
-                                                id="setting-outdoor"
-                                                name="setting"
-                                                type="radio"
-                                                value="outdoor"
-                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            />
-                                            <label
-                                                htmlFor="setting-outdoor"
-                                                className="block text-sm font-medium leading-6 "
-                                            >
-                                                Outdoor
-                                            </label>
-                                        </div>
-                                        <div className="flex items-center gap-x-3">
-                                            <input
-                                                id="setting-any"
-                                                name="setting"
-                                                type="radio"
-                                                value="any"
-                                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            />
-                                            <label
-                                                htmlFor="setting-any"
-                                                className="block text-sm font-medium leading-6 "
-                                            >
-                                                Any
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
+                            <RadioOptions
+                                name="setting"
+                                title="Setting"
+                                description="Where should this game be played?"
+                                options={[
+                                    { label: "Indoor", value: "indoor" },
+                                    { label: "Outdoor", value: "outdoor" },
+                                    { label: "Any", value: "any" },
+                                ]}
+                            />
+
+                            <RadioOptions
+                                name="gameActivityLevel"
+                                title="Activity Level"
+                                description="Where level of exertion is required?"
+                                options={[
+                                    { label: "Low", value: "Low" },
+                                    { label: "Medium", value: "Medium" },
+                                    { label: "High", value: "High" },
+                                ]}
+                            />
                         </div>
                     </div>
 
@@ -207,167 +178,6 @@ export default function SubmitGamePage() {
                                     />
                                 </div>
                             </div>
-
-                            <div className="col-span-full">
-                                <label
-                                    htmlFor="street-address"
-                                    className="block text-sm font-medium leading-6 "
-                                >
-                                    Street address
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="street-address"
-                                        id="street-address"
-                                        autoComplete="street-address"
-                                        className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="sm:col-span-2 sm:col-start-1">
-                                <label
-                                    htmlFor="city"
-                                    className="block text-sm font-medium leading-6 "
-                                >
-                                    City
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="city"
-                                        id="city"
-                                        autoComplete="address-level2"
-                                        className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="sm:col-span-2">
-                                <label
-                                    htmlFor="region"
-                                    className="block text-sm font-medium leading-6 "
-                                >
-                                    State / Province
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="region"
-                                        id="region"
-                                        autoComplete="address-level1"
-                                        className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="sm:col-span-2">
-                                <label
-                                    htmlFor="postal-code"
-                                    className="block text-sm font-medium leading-6 "
-                                >
-                                    ZIP / Postal code
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        type="text"
-                                        name="postal-code"
-                                        id="postal-code"
-                                        autoComplete="postal-code"
-                                        className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-                        <div>
-                            <h2 className="text-base font-semibold leading-7 ">
-                                Notifications
-                            </h2>
-                            <p className="mt-1 text-sm leading-6 text-gray-600">
-                                We'll always let you know about important
-                                changes, but you pick what else you want to hear
-                                about.
-                            </p>
-                        </div>
-
-                        <div className="max-w-2xl space-y-10 md:col-span-2">
-                            <fieldset>
-                                <legend className="text-sm font-semibold leading-6 ">
-                                    By Email
-                                </legend>
-                                <div className="mt-6 space-y-6">
-                                    <div className="relative flex gap-x-3">
-                                        <div className="flex h-6 items-center">
-                                            <input
-                                                id="comments"
-                                                name="comments"
-                                                type="checkbox"
-                                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            />
-                                        </div>
-                                        <div className="text-sm leading-6">
-                                            <label
-                                                htmlFor="comments"
-                                                className="font-medium "
-                                            >
-                                                Comments
-                                            </label>
-                                            <p className="text-gray-500">
-                                                Get notified when someones posts
-                                                a comment on a posting.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="relative flex gap-x-3">
-                                        <div className="flex h-6 items-center">
-                                            <input
-                                                id="candidates"
-                                                name="candidates"
-                                                type="checkbox"
-                                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            />
-                                        </div>
-                                        <div className="text-sm leading-6">
-                                            <label
-                                                htmlFor="candidates"
-                                                className="font-medium "
-                                            >
-                                                Candidates
-                                            </label>
-                                            <p className="text-gray-500">
-                                                Get notified when a candidate
-                                                applies for a job.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="relative flex gap-x-3">
-                                        <div className="flex h-6 items-center">
-                                            <input
-                                                id="offers"
-                                                name="offers"
-                                                type="checkbox"
-                                                className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                            />
-                                        </div>
-                                        <div className="text-sm leading-6">
-                                            <label
-                                                htmlFor="offers"
-                                                className="font-medium "
-                                            >
-                                                Offers
-                                            </label>
-                                            <p className="text-gray-500">
-                                                Get notified when a candidate
-                                                accepts or rejects an offer.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
                         </div>
                     </div>
                 </div>
