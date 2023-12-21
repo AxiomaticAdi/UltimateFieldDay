@@ -17,15 +17,27 @@ export default function SubmitGamePage() {
     const [gameActivityLevel, setGameActivityLevel] = useState<string>("");
     const [userEmail, setUserEmail] = useState("");
 
-    const handleSubmit = (event) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        console.log();
+        const response = {
+            gameTitle: gameTitle || null,
+            gameSetup: gameSetup || null,
+            gameRules: gameRules || null,
+            gameEquipment: gameEquipment || null,
+            gameMinPlayers: gameMinPlayers || null,
+            gameMaxPlayers: gameMaxPlayers || null,
+            gameSetting: gameSetting || null,
+            gameActivityLevel: gameActivityLevel || null,
+            userEmail: userEmail || null,
+        };
+
+        console.log(response);
     };
 
     return (
         <AppFrame>
-            <form className="px-4">
+            <form onSubmit={handleSubmit} className="px-4">
                 <div className="space-y-12 text-white">
                     <div className="px-6 py-24 sm:py-32 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
@@ -188,6 +200,10 @@ export default function SubmitGamePage() {
                                         name="email"
                                         type="email"
                                         autoComplete="email"
+                                        value={userEmail}
+                                        onChange={(e) =>
+                                            setUserEmail(e.target.value)
+                                        }
                                         className="block w-full rounded-md border-0 bg-transparent py-1.5 pl-10 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     />
                                 </div>
