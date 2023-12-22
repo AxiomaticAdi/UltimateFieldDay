@@ -1,4 +1,4 @@
-import { Game } from "../types/Game";
+import { Game } from "../types/GameTypes";
 
 export const alphabeticalSort = (a: Game, b: Game) => {
     if (a.name < b.name) {

@@ -1,7 +1,5 @@
 import axios from "axios";
-
-import { Game } from "../types/Game";
-import { Setting } from "../types/Setting";
+import { Game, GameActivityLevel, GameSetting } from "../types/GameTypes";
 
 const dataEndpoint =
     "https://docs.google.com/spreadsheets/d/1puezgtVv4978tGpoEjxrW-GALXBaUSx6_SBmFZRABlw/gviz/tq?";
@@ -16,25 +14,35 @@ type SheetRow = {
 };
 
 export function sheetRowToMatch(cell: SheetRow, id: string): Game {
+    let column = -1;
     const rowId = id;
-    const gameId = String(cell.c[0]?.v) ?? "";
-    const name = String(cell.c[1]?.v) ?? "";
-    const settingRaw = String(cell.c[3]?.v) ?? "";
-    const setting =
+
+    const gameId = String(cell.c[++column]?.v) ?? "";
+    const name = String(cell.c[++column]?.v) ?? "";
+    const settingRaw = String(cell.c[++column]?.v).toLowerCase() ?? "";
+    const setting: GameSetting =
         settingRaw === "outdoor"
-            ? Setting.Outdoor
+            ? GameSetting.Outdoor
             : settingRaw === "indoor"
-              ? Setting.Indoor
-              : Setting.Any;
+              ? GameSetting.Indoor
+              : GameSetting.Any;
 
-    const equipment = String(cell.c[4]?.v).split(",") ?? "";
-    const minCount = Number(cell.c[5]?.v) ?? 0;
-    const maxCount = Number(cell.c[6]?.v) ?? 0;
+    const activityLevelRaw = String(cell.c[++column]?.v).toLowerCase() ?? "";
+    const activityLevel: GameActivityLevel =
+        activityLevelRaw === "low"
+            ? GameActivityLevel.Low
+            : activityLevelRaw === "Medium"
+              ? GameActivityLevel.Medium
+              : GameActivityLevel.High;
 
-    const setup = String(cell.c[7]?.v) ?? "";
-    const rules = String(cell.c[8]?.v) ?? "";
+    const equipment = String(cell.c[++column]?.v).split(",") ?? "";
+    const minCount = Number(cell.c[++column]?.v) ?? 0;
+    const maxCount = Number(cell.c[++column]?.v) ?? 0;
 
-    const yt = String(cell.c[9]?.v) ?? "";
+    const setup = String(cell.c[++column]?.v) ?? "";
+    const rules = String(cell.c[++column]?.v) ?? "";
+
+    const yt = String(cell.c[++column]?.v) ?? "";
 
     return {
         rowId: rowId,
@@ -43,6 +51,7 @@ export function sheetRowToMatch(cell: SheetRow, id: string): Game {
         minPlayerCount: minCount,
         name: name,
         setting: setting,
+        activityLevel: activityLevel,
         maxPlayerCount: maxCount,
         setup: setup,
         rules: rules,

@@ -1,7 +1,7 @@
 import { GamesService } from "../services/GamesService";
 import { useCallback, useEffect, useState } from "react";
 
-import { Game } from "../types/Game";
+import { Game } from "../types/GameTypes";
 import { alphabeticalSort } from "../logic/sorting";
 
 import AppFrame from "../components/AppFrame";

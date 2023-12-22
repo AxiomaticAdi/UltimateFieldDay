@@ -1,4 +1,4 @@
-import { Game } from "../types/Game";
+import { Game } from "../types/GameTypes";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
