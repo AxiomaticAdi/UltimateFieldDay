@@ -5,11 +5,7 @@ import FilterCheckbox from "./FilterCheckbox";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-const sortOptions = [
-    { name: "A - Z", href: "#", current: true },
-    { name: "Best Rating", href: "#", current: false },
-    { name: "Newest", href: "#", current: false },
-];
+const sortOptions = [{ name: "A - Z", href: "#", current: true }];
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(" ");

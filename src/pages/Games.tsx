@@ -1,6 +1,9 @@
 import { GamesService } from "../services/GamesService";
 import { useCallback, useEffect, useState } from "react";
+
 import { Game } from "../types/Game";
+import { alphabeticalSort } from "../logic/sorting";
+
 import AppFrame from "../components/AppFrame";
 import GameCard from "../components/GameCard";
 import FilterSection from "../components/FilterSection";
@@ -43,6 +46,9 @@ export default function Games() {
                     ((indoorFilter || outdoorFilter) && game.setting === "Any")
                 );
             });
+
+            // Sort games
+            filteredGames.sort(alphabeticalSort);
 
             setFilteredGamesList(filteredGames);
         }
