@@ -6,7 +6,7 @@ import App from "./App.tsx";
 import "./index.css";
 
 import ErrorPage from "./pages/ErrorPage.tsx";
-import Games from "./pages/Games.tsx";
+import GamesPage from "./pages/GamesPage.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import SubmitGamePage from "./pages/SubmitGamePage.tsx";
 
@@ -18,7 +18,7 @@ const router = createHashRouter([
     },
     {
         path: "/games",
-        element: <Games />,
+        element: <GamesPage />,
         errorElement: <ErrorPage />,
     },
     {
