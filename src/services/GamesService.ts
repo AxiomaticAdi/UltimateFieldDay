@@ -31,7 +31,7 @@ export function sheetRowToMatch(cell: SheetRow, id: string): Game {
     const activityLevel: GameActivityLevel =
         activityLevelRaw === "low"
             ? GameActivityLevel.Low
-            : activityLevelRaw === "Medium"
+            : activityLevelRaw === "medium"
               ? GameActivityLevel.Medium
               : GameActivityLevel.High;
 

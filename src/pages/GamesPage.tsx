@@ -2,6 +2,7 @@ import { GamesService } from "../services/GamesService";
 import { useCallback, useEffect, useState } from "react";
 
 import { Game } from "../types/GameTypes";
+import { FilterStates } from "../types/FilterTypes";
 import { alphabeticalSort } from "../logic/sorting";
 
 import AppFrame from "../components/AppFrame";
@@ -9,8 +10,9 @@ import GameCard from "../components/GameCard";
 import FilterSection from "../components/FilterSection";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { applyFilters } from "../logic/filtering";
 
-export default function Games() {
+export default function GamesPage() {
     const [gamesList, setGameList] = useState<Game[] | undefined>();
     const [filteredGamesList, setFilteredGamesList] = useState<
         Game[] | undefined
@@ -19,9 +21,17 @@ export default function Games() {
     // Filters
     const [indoorFilter, setIndoorFilter] = useState<boolean>(true);
     const [outdoorFilter, setOutdoorFilter] = useState<boolean>(true);
+    const [lowActivityFilter, setLowActivityFilter] = useState<boolean>(true);
+    const [mediumActivityFilter, setMediumActivityFilter] =
+        useState<boolean>(true);
+    const [highActivityFilter, setHighActivityFilter] = useState<boolean>(true);
+
     const resetFilters = useCallback(() => {
         setIndoorFilter(true);
         setOutdoorFilter(true);
+        setLowActivityFilter(true);
+        setMediumActivityFilter(true);
+        setHighActivityFilter(true);
     }, [setIndoorFilter, setOutdoorFilter]);
 
     // Animation
@@ -37,22 +47,31 @@ export default function Games() {
     });
 
     useEffect(() => {
-        // Filter logic
         if (gamesList) {
-            const filteredGames = gamesList.filter((game) => {
-                return (
-                    (indoorFilter && game.setting === "Indoor") ||
-                    (outdoorFilter && game.setting === "Outdoor") ||
-                    ((indoorFilter || outdoorFilter) && game.setting === "Any")
-                );
-            });
+            // Filter games
+            const filters: FilterStates = {
+                indoor: indoorFilter,
+                outdoor: outdoorFilter,
+                lowActivity: lowActivityFilter,
+                mediumActivity: mediumActivityFilter,
+                highActivity: highActivityFilter,
+            };
+            const filteredGames = applyFilters(gamesList, filters);
 
             // Sort games
             filteredGames.sort(alphabeticalSort);
 
+            // Update filtered games
             setFilteredGamesList(filteredGames);
         }
-    }, [gamesList, indoorFilter, outdoorFilter]);
+    }, [
+        gamesList,
+        highActivityFilter,
+        indoorFilter,
+        lowActivityFilter,
+        mediumActivityFilter,
+        outdoorFilter,
+    ]);
 
     // if there are no games hydrated yet, render blank page
     if (filteredGamesList === undefined) {
@@ -71,6 +90,12 @@ export default function Games() {
                     setIndoorFilter={setIndoorFilter}
                     outdoorFilter={outdoorFilter}
                     setOutdoorFilter={setOutdoorFilter}
+                    lowActivityFilter={lowActivityFilter}
+                    setLowActivityFilter={setLowActivityFilter}
+                    mediumActivityFilter={mediumActivityFilter}
+                    setMediumActivityFilter={setMediumActivityFilter}
+                    highActivityFilter={highActivityFilter}
+                    setHighActivityFilter={setHighActivityFilter}
                     resetFilters={resetFilters}
                 />
 

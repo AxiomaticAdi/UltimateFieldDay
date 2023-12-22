@@ -16,6 +16,12 @@ interface FilterSection {
     setIndoorFilter: (value: boolean) => void;
     outdoorFilter: boolean;
     setOutdoorFilter: (value: boolean) => void;
+    lowActivityFilter: boolean;
+    setLowActivityFilter: (value: boolean) => void;
+    mediumActivityFilter: boolean;
+    setMediumActivityFilter: (value: boolean) => void;
+    highActivityFilter: boolean;
+    setHighActivityFilter: (value: boolean) => void;
     resetFilters: () => void;
 }
 
@@ -24,6 +30,12 @@ export default function FilterSection({
     setIndoorFilter,
     outdoorFilter,
     setOutdoorFilter,
+    lowActivityFilter,
+    setLowActivityFilter,
+    mediumActivityFilter,
+    setMediumActivityFilter,
+    highActivityFilter,
+    setHighActivityFilter,
     resetFilters,
 }: FilterSection) {
     // Animation
@@ -61,27 +73,49 @@ export default function FilterSection({
                     </div>
                 </div>
                 <Disclosure.Panel className="rounded-b-lg border-t border-indigo-400 bg-slate-200 py-10">
-                    <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-4 px-4 text-sm sm:px-6 md:gap-x-6 lg:px-8">
-                        <div className="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6">
-                            <fieldset>
-                                <legend className="font-bold">Setting</legend>
-                                <div className="space-y-6 pt-6 sm:space-y-4 sm:pt-4 sm:text-sm">
-                                    <FilterCheckbox
-                                        filterName={"indoorFilterFilter"}
-                                        checked={indoorFilter}
-                                        setChecked={setIndoorFilter}
-                                        label={"Indoor"}
-                                    />
-                                    <FilterCheckbox
-                                        filterName={"outdoorFilter"}
-                                        checked={outdoorFilter}
-                                        setChecked={setOutdoorFilter}
-                                        label={"Outdoor"}
-                                    />
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div className="grid auto-rows-min grid-cols-1 gap-y-10 md:grid-cols-2 md:gap-x-6"></div>
+                    <div className="flex flex-row flex-wrap">
+                        <fieldset className="px-4">
+                            <legend className="font-bold">Setting</legend>
+                            <div className="flex flex-col gap-2 pt-2">
+                                <FilterCheckbox
+                                    filterName={"indoorFilterFilter"}
+                                    checked={indoorFilter}
+                                    setChecked={setIndoorFilter}
+                                    label={"Indoor"}
+                                />
+                                <FilterCheckbox
+                                    filterName={"outdoorFilter"}
+                                    checked={outdoorFilter}
+                                    setChecked={setOutdoorFilter}
+                                    label={"Outdoor"}
+                                />
+                            </div>
+                        </fieldset>
+                        <fieldset className="px-4">
+                            <legend className="font-bold">
+                                Activity Level
+                            </legend>
+                            <div className="flex flex-col gap-2 pt-2">
+                                <FilterCheckbox
+                                    filterName={"lowActivityFilter"}
+                                    checked={lowActivityFilter}
+                                    setChecked={setLowActivityFilter}
+                                    label={"Low"}
+                                />
+                                <FilterCheckbox
+                                    filterName={"mediumActivityFilter"}
+                                    checked={mediumActivityFilter}
+                                    setChecked={setMediumActivityFilter}
+                                    label={"Medium"}
+                                />
+                                <FilterCheckbox
+                                    filterName={"highActivityFilter"}
+                                    checked={highActivityFilter}
+                                    setChecked={setHighActivityFilter}
+                                    label={"High"}
+                                />
+                            </div>
+                        </fieldset>
                     </div>
                 </Disclosure.Panel>
                 <div className="col-start-1 row-start-1 py-4">
