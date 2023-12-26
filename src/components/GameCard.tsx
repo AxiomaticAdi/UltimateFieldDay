@@ -15,6 +15,13 @@ function fieldExists(field: string | undefined): boolean {
     return true;
 }
 
+function equipmentListToString(equipmentList: string[]): string {
+    const formattedList = equipmentList.map(
+        (item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase(),
+    );
+    return formattedList.join(", ");
+}
+
 export default function GameCardModal({ game }: { game: Game }) {
     const [open, setOpen] = useState(false);
 
@@ -64,6 +71,19 @@ export default function GameCardModal({ game }: { game: Game }) {
                                         </div>
                                         <div className="mt-3 text-center sm:mt-5">
                                             <div className="flex flex-col gap-4 text-sm">
+                                                {game.equipment.length > 0 && (
+                                                    <div>
+                                                        <strong>
+                                                            Equipment:{" "}
+                                                        </strong>
+                                                        <div className="text-center">
+                                                            {equipmentListToString(
+                                                                game.equipment,
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                )}
+
                                                 {fieldExists(game.setup) && (
                                                     <div>
                                                         <strong>Setup: </strong>
