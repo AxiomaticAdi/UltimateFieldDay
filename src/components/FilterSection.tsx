@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
 import FilterCheckbox from "./FilterCheckbox";
@@ -22,6 +22,7 @@ interface FilterSection {
     setMediumActivityFilter: (value: boolean) => void;
     highActivityFilter: boolean;
     setHighActivityFilter: (value: boolean) => void;
+
     resetFilters: () => void;
 }
 
@@ -36,10 +37,13 @@ export default function FilterSection({
     setMediumActivityFilter,
     highActivityFilter,
     setHighActivityFilter,
+
     resetFilters,
 }: FilterSection) {
     // Animation
     const [parentFilterSection] = useAutoAnimate();
+
+    const [inclEquipInput, setInclEquipInput] = useState<string>("");
 
     return (
         <div className="py-3">
@@ -73,7 +77,7 @@ export default function FilterSection({
                     </div>
                 </div>
                 <Disclosure.Panel className="rounded-b-lg border-t border-indigo-400 bg-slate-200 py-10">
-                    <div className="flex flex-row flex-wrap">
+                    <div className="flex flex-row flex-wrap gap-y-4">
                         <fieldset className="px-4">
                             <legend className="font-bold">Setting</legend>
                             <div className="flex flex-col gap-2 pt-2">
@@ -113,6 +117,20 @@ export default function FilterSection({
                                     checked={highActivityFilter}
                                     setChecked={setHighActivityFilter}
                                     label={"High"}
+                                />
+                            </div>
+                        </fieldset>
+                        <fieldset className="px-4">
+                            <legend className="font-bold">Equipment</legend>
+                            <div className="flex flex-col gap-2 pt-2">
+                                <input
+                                    type="text"
+                                    placeholder="Include"
+                                    className="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    value={inclEquipInput}
+                                    onChange={(e) =>
+                                        setInclEquipInput(e.target.value)
+                                    }
                                 />
                             </div>
                         </fieldset>

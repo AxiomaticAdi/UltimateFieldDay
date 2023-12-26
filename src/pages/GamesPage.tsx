@@ -26,6 +26,9 @@ export default function GamesPage() {
         useState<boolean>(true);
     const [highActivityFilter, setHighActivityFilter] = useState<boolean>(true);
 
+    // const [equipmentSuggestions, setEquipmentSuggestions] =
+    //     useState<string[]>("");
+
     const resetFilters = useCallback(() => {
         setIndoorFilter(true);
         setOutdoorFilter(true);
@@ -37,8 +40,22 @@ export default function GamesPage() {
     // Animation
     const [parentGameCards] = useAutoAnimate();
 
-    // Fetch games on first load
+    // const updateEquipmentSuggestions = (input: string) => {
+    //     if (!input) {
+    //         setEquipmentSuggestions([]);
+    //         return;
+    //     }
+
+    //     const matchedEquipmentSuggestions = equipmentSet.filter(
+    //         (item: string) => item.toLowerCase().includes(input.toLowerCase()),
+    //     );
+
+    //     setEquipmentSuggestions(matchedEquipmentSuggestions);
+    // };
+
+    // On first load
     useEffect(() => {
+        // Fetch Games
         if (gamesList === undefined) {
             GamesService.fetchGamesAsync().then((res) => {
                 setGameList(res);
@@ -81,6 +98,19 @@ export default function GamesPage() {
             </AppFrame>
         );
     }
+
+    // Calculate all equipment values
+    const getAllEquipment = (games: Game[] | undefined): Set<string> => {
+        const tempEquipmentSet = new Set<string>();
+        if (games) {
+            games.forEach((game) => {
+                game.equipment.forEach((item) => tempEquipmentSet.add(item));
+            });
+        }
+        return tempEquipmentSet;
+    };
+    const equipmentSet: Set<string> = getAllEquipment(gamesList);
+    console.log(equipmentSet);
 
     return (
         <AppFrame>
