@@ -71,7 +71,9 @@ export default function GameCardModal({ game }: { game: Game }) {
                                         </div>
                                         <div className="mt-3 text-center sm:mt-5">
                                             <div className="flex flex-col gap-4 text-sm">
-                                                {game.equipment.length > 0 && (
+                                                {fieldExists(
+                                                    game.equipment[0],
+                                                ) && (
                                                     <div>
                                                         <strong>
                                                             Equipment:{" "}
