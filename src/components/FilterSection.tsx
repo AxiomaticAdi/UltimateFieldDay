@@ -27,6 +27,8 @@ interface FilterSection {
     resetFilters: () => void;
 
     equipmentSet: Set<string>;
+    includedEquipmentFilter: string[];
+    setIncludedEquipmentFilter: (value: string[]) => void;
 }
 
 export default function FilterSection({
@@ -44,6 +46,8 @@ export default function FilterSection({
     resetFilters,
 
     equipmentSet,
+    includedEquipmentFilter,
+    setIncludedEquipmentFilter,
 }: FilterSection) {
     // Animation
     const [parentFilterSection] = useAutoAnimate();
@@ -127,9 +131,40 @@ export default function FilterSection({
                         </fieldset>
                         <fieldset className="px-4">
                             <legend className="font-bold">Equipment</legend>
+                            {includedEquipmentFilter.length > 0 && (
+                                <>
+                                    <p>Included:</p>
+                                    {includedEquipmentFilter.map(
+                                        (equipment) => (
+                                            <p key={equipment}>
+                                                {equipment}
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        setIncludedEquipmentFilter(
+                                                            includedEquipmentFilter.filter(
+                                                                (e) =>
+                                                                    e !==
+                                                                    equipment,
+                                                            ),
+                                                        )
+                                                    }
+                                                >
+                                                    x
+                                                </button>
+                                            </p>
+                                        ),
+                                    )}
+                                </>
+                            )}
+
                             <div className="flex flex-col gap-2 pt-2">
                                 <AutoCompleteTextInput
                                     equipmentSet={equipmentSet}
+                                    chosenEquipment={includedEquipmentFilter}
+                                    setChosenEquipment={
+                                        setIncludedEquipmentFilter
+                                    }
                                 />
                             </div>
                         </fieldset>

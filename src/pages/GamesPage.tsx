@@ -26,6 +26,10 @@ export default function GamesPage() {
         useState<boolean>(true);
     const [highActivityFilter, setHighActivityFilter] = useState<boolean>(true);
 
+    const [includedEquipmentFilter, setIncludedEquipmentFilter] = useState<
+        string[]
+    >([]);
+
     // const [equipmentSuggestions, setEquipmentSuggestions] =
     //     useState<string[]>("");
 
@@ -35,23 +39,10 @@ export default function GamesPage() {
         setLowActivityFilter(true);
         setMediumActivityFilter(true);
         setHighActivityFilter(true);
-    }, [setIndoorFilter, setOutdoorFilter]);
+    }, []);
 
     // Animation
     const [parentGameCards] = useAutoAnimate();
-
-    // const updateEquipmentSuggestions = (input: string) => {
-    //     if (!input) {
-    //         setEquipmentSuggestions([]);
-    //         return;
-    //     }
-
-    //     const matchedEquipmentSuggestions = equipmentSet.filter(
-    //         (item: string) => item.toLowerCase().includes(input.toLowerCase()),
-    //     );
-
-    //     setEquipmentSuggestions(matchedEquipmentSuggestions);
-    // };
 
     // On first load
     useEffect(() => {
@@ -128,6 +119,8 @@ export default function GamesPage() {
                     setHighActivityFilter={setHighActivityFilter}
                     resetFilters={resetFilters}
                     equipmentSet={equipmentSet}
+                    includedEquipmentFilter={includedEquipmentFilter}
+                    setIncludedEquipmentFilter={setIncludedEquipmentFilter}
                 />
 
                 <div
