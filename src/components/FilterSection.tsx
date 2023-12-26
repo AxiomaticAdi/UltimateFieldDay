@@ -1,9 +1,10 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
 import FilterCheckbox from "./FilterCheckbox";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import AutoCompleteTextInput from "./AutoCompleteTextInput";
 
 const sortOptions = [{ name: "A - Z", href: "#", current: true }];
 
@@ -24,6 +25,8 @@ interface FilterSection {
     setHighActivityFilter: (value: boolean) => void;
 
     resetFilters: () => void;
+
+    equipmentSet: Set<string>;
 }
 
 export default function FilterSection({
@@ -39,11 +42,13 @@ export default function FilterSection({
     setHighActivityFilter,
 
     resetFilters,
+
+    equipmentSet,
 }: FilterSection) {
     // Animation
     const [parentFilterSection] = useAutoAnimate();
 
-    const [inclEquipInput, setInclEquipInput] = useState<string>("");
+    // const [inclEquipInput, setInclEquipInput] = useState<string>("");
 
     return (
         <div className="py-3">
@@ -123,14 +128,8 @@ export default function FilterSection({
                         <fieldset className="px-4">
                             <legend className="font-bold">Equipment</legend>
                             <div className="flex flex-col gap-2 pt-2">
-                                <input
-                                    type="text"
-                                    placeholder="Include"
-                                    className="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    value={inclEquipInput}
-                                    onChange={(e) =>
-                                        setInclEquipInput(e.target.value)
-                                    }
+                                <AutoCompleteTextInput
+                                    equipmentSet={equipmentSet}
                                 />
                             </div>
                         </fieldset>

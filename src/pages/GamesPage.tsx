@@ -127,6 +127,7 @@ export default function GamesPage() {
                     highActivityFilter={highActivityFilter}
                     setHighActivityFilter={setHighActivityFilter}
                     resetFilters={resetFilters}
+                    equipmentSet={equipmentSet}
                 />
 
                 <div
