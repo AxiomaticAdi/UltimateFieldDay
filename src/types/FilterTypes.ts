@@ -4,4 +4,5 @@ export type FilterStates = {
     lowActivity: boolean;
     mediumActivity: boolean;
     highActivity: boolean;
+    includedEquipment: string[];
 };

@@ -13,6 +13,26 @@ export const applyFilters = (games: Game[], filters: FilterStates): Game[] => {
             (filters.mediumActivity && game.activityLevel === "Medium") ||
             (filters.highActivity && game.activityLevel === "High");
 
-        return settingFilter && activityFilter;
+        const equipmentFilter = includeEquipmentFilter(
+            game,
+            filters.includedEquipment,
+        );
+
+        return settingFilter && activityFilter && equipmentFilter;
     });
+};
+
+const includeEquipmentFilter = (game: Game, includedEquipment: string[]) => {
+    if (includedEquipment.length === 0) {
+        return true;
+    }
+
+    const equipmentSet = new Set(game.equipment);
+    for (const item of includedEquipment) {
+        if (!equipmentSet.has(item)) {
+            return false;
+        }
+    }
+
+    return true;
 };

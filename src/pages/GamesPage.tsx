@@ -63,6 +63,7 @@ export default function GamesPage() {
                 lowActivity: lowActivityFilter,
                 mediumActivity: mediumActivityFilter,
                 highActivity: highActivityFilter,
+                includedEquipment: includedEquipmentFilter,
             };
             const filteredGames = applyFilters(gamesList, filters);
 
@@ -75,6 +76,7 @@ export default function GamesPage() {
     }, [
         gamesList,
         highActivityFilter,
+        includedEquipmentFilter,
         indoorFilter,
         lowActivityFilter,
         mediumActivityFilter,
