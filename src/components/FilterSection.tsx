@@ -33,7 +33,7 @@ interface FilterSection {
     setExcludedEquipmentFilter: (value: string[]) => void;
 
     playerCountFilter: number | undefined;
-    setPlayerCountFilter: (value: number) => void;
+    setPlayerCountFilter: (value: number | undefined) => void;
 
     resetFilters: () => void;
 }
