@@ -56,7 +56,7 @@ export default function AutoCompleteTextInput({
                     placeholder={placeholder}
                     className="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-                <Combobox.Options className="absolute z-50 max-h-80 scroll-py-2 divide-y divide-gray-500 overflow-y-auto rounded-md bg-indigo-800">
+                <Combobox.Options className="absolute z-50 max-h-80 w-full scroll-py-2 divide-y divide-gray-500 overflow-y-auto rounded-md bg-indigo-800">
                     <ul className="text-sm text-white">
                         {filteredEquipment.map((equipment) => (
                             <Combobox.Option
