@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function App() {
     return (
-        <div className="relative isolate overflow-hidden bg-gray-900">
+        <div className="relative isolate min-h-screen overflow-hidden bg-gray-900">
             <div
                 className="absolute left-[calc(50%-4rem)] top-10 -z-10 transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-30rem)] xl:left-[calc(50%-24rem)]"
                 aria-hidden="true"
@@ -15,17 +15,14 @@ export default function App() {
                     }}
                 />
             </div>
-            <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-                <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
+            <div className="flex w-full justify-center">
+                <div className="flex max-w-2xl flex-shrink-0 flex-col items-center justify-center pt-60 text-center">
                     <img className="h-12" src="/FieldDayLogo.svg" alt="logo" />
                     <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                        The Ultimate Source for Field Day Games!
+                        Finding the right field day games made simple
                     </h1>
                     <p className="mt-6 text-lg leading-8 text-gray-300">
-                        Alleviate the stress of organizing field day events and
-                        quickly find new, unique, and engaging games for your
-                        group. UltimateFieldDay is the best resource for finding
-                        fresh and exciting field day ideas
+                        The worlds largest searchable field day games repository
                     </p>
                     <div className="mt-10 flex items-center gap-x-6">
                         <Link
@@ -40,17 +37,6 @@ export default function App() {
                         >
                             About <span aria-hidden="true">→</span>
                         </Link>
-                    </div>
-                </div>
-                <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-                    <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                        <img
-                            src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
-                            alt="App screenshot"
-                            width={2432}
-                            height={1442}
-                            className="w-[76rem] rounded-md bg-white/5 shadow-2xl ring-1 ring-white/10"
-                        />
                     </div>
                 </div>
             </div>
