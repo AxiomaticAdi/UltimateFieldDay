@@ -6,4 +6,5 @@ export type FilterStates = {
     highActivity: boolean;
     includedEquipment: string[];
     excludedEquipment: string[];
+    playerCount: number | undefined;
 };

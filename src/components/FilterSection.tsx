@@ -6,6 +6,7 @@ import FilterCheckbox from "./FilterCheckbox";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import AutoCompleteTextInput from "./AutoCompleteTextInput";
 import EquipmentBadge from "./EquipmentBadge";
+import PlayerCountInput from "./PlayerCountInput";
 
 const sortOptions = [{ name: "A - Z", href: "#", current: true }];
 
@@ -31,6 +32,9 @@ interface FilterSection {
     excludedEquipmentFilter: string[];
     setExcludedEquipmentFilter: (value: string[]) => void;
 
+    playerCountFilter: number | undefined;
+    setPlayerCountFilter: (value: number) => void;
+
     resetFilters: () => void;
 }
 
@@ -51,6 +55,9 @@ export default function FilterSection({
     setIncludedEquipmentFilter,
     excludedEquipmentFilter,
     setExcludedEquipmentFilter,
+
+    playerCountFilter,
+    setPlayerCountFilter,
 
     resetFilters,
 }: FilterSection) {
@@ -200,6 +207,17 @@ export default function FilterSection({
                                     setChosenEquipment={
                                         setExcludedEquipmentFilter
                                     }
+                                />
+                            </div>
+                        </fieldset>
+                        <fieldset className="px-4">
+                            <legend className="font-bold">Player count</legend>
+                            <div className="flex flex-col gap-2">
+                                <PlayerCountInput
+                                    min={2}
+                                    max={100}
+                                    value={playerCountFilter}
+                                    onChange={setPlayerCountFilter}
                                 />
                             </div>
                         </fieldset>

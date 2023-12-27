@@ -33,6 +33,10 @@ export default function GamesPage() {
         string[]
     >([]);
 
+    const [playerCountFilter, setPlayerCountFilter] = useState<
+        number | undefined
+    >(undefined);
+
     const resetFilters = useCallback(() => {
         setIndoorFilter(true);
         setOutdoorFilter(true);
@@ -41,6 +45,7 @@ export default function GamesPage() {
         setHighActivityFilter(true);
         setIncludedEquipmentFilter([]);
         setExcludedEquipmentFilter([]);
+        setPlayerCountFilter(undefined);
     }, []);
 
     // Animation
@@ -67,6 +72,7 @@ export default function GamesPage() {
                 highActivity: highActivityFilter,
                 includedEquipment: includedEquipmentFilter,
                 excludedEquipment: excludedEquipmentFilter,
+                playerCount: playerCountFilter,
             };
             const filteredGames = applyFilters(gamesList, filters);
 
@@ -85,6 +91,7 @@ export default function GamesPage() {
         lowActivityFilter,
         mediumActivityFilter,
         outdoorFilter,
+        playerCountFilter,
     ]);
 
     // if there are no games hydrated yet, render blank page
@@ -129,6 +136,8 @@ export default function GamesPage() {
                     setIncludedEquipmentFilter={setIncludedEquipmentFilter}
                     excludedEquipmentFilter={excludedEquipmentFilter}
                     setExcludedEquipmentFilter={setExcludedEquipmentFilter}
+                    playerCountFilter={playerCountFilter}
+                    setPlayerCountFilter={setPlayerCountFilter}
                 />
 
                 <div
