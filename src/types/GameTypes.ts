@@ -6,7 +6,7 @@ export type Game = {
     activityLevel: GameActivityLevel;
     equipment: string[];
     minPlayerCount: number;
-    maxPlayerCount?: number;
+    maxPlayerCount: number;
     setup?: string;
     rules?: string;
     yt?: string;

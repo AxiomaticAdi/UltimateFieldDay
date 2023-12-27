@@ -17,7 +17,17 @@ export const applyFilters = (games: Game[], filters: FilterStates): Game[] => {
             includeEquipmentFilter(game, filters.includedEquipment) &&
             excludeEquipmentFilter(game, filters.excludedEquipment);
 
-        return settingFilter && activityFilter && equipmentFilter;
+        const playerCountFilter = filters.playerCount
+            ? game.minPlayerCount <= filters.playerCount &&
+              game.maxPlayerCount >= filters.playerCount
+            : true;
+
+        return (
+            settingFilter &&
+            activityFilter &&
+            equipmentFilter &&
+            playerCountFilter
+        );
     });
 };
 

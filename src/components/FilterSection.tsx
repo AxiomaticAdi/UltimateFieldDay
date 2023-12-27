@@ -214,7 +214,7 @@ export default function FilterSection({
                             <legend className="font-bold">Player count</legend>
                             <div className="flex flex-col gap-2">
                                 <PlayerCountInput
-                                    min={2}
+                                    min={1}
                                     max={100}
                                     value={playerCountFilter}
                                     onChange={setPlayerCountFilter}
