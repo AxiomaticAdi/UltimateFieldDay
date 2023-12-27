@@ -136,47 +136,51 @@ export default function FilterSection({
                             <legend className="font-bold">Equipment</legend>
                             {includedEquipmentFilter.length > 0 && (
                                 <>
-                                    <p className="block text-sm font-medium leading-6 text-gray-700">
+                                    <p className="block pt-1 text-sm font-medium leading-6 text-gray-700">
                                         Included:
                                     </p>
-                                    {includedEquipmentFilter.map(
-                                        (equipment) => (
-                                            <EquipmentBadge
-                                                key={equipment}
-                                                color="green"
-                                                equipment={equipment}
-                                                equipmentList={
-                                                    includedEquipmentFilter
-                                                }
-                                                setEquipmentList={
-                                                    setIncludedEquipmentFilter
-                                                }
-                                            />
-                                        ),
-                                    )}
+                                    <div className="flex flex-wrap gap-1">
+                                        {includedEquipmentFilter.map(
+                                            (equipment) => (
+                                                <EquipmentBadge
+                                                    key={equipment}
+                                                    color="green"
+                                                    equipment={equipment}
+                                                    equipmentList={
+                                                        includedEquipmentFilter
+                                                    }
+                                                    setEquipmentList={
+                                                        setIncludedEquipmentFilter
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                    </div>
                                 </>
                             )}
 
                             {excludedEquipmentFilter.length > 0 && (
                                 <>
-                                    <p className="block text-sm font-medium leading-6 text-gray-700">
+                                    <p className="block pt-1 text-sm font-medium leading-6 text-gray-700">
                                         Excluded:
                                     </p>
-                                    {excludedEquipmentFilter.map(
-                                        (equipment) => (
-                                            <EquipmentBadge
-                                                key={equipment}
-                                                color="red"
-                                                equipment={equipment}
-                                                equipmentList={
-                                                    excludedEquipmentFilter
-                                                }
-                                                setEquipmentList={
-                                                    setExcludedEquipmentFilter
-                                                }
-                                            />
-                                        ),
-                                    )}
+                                    <div className="flex flex-wrap gap-1">
+                                        {excludedEquipmentFilter.map(
+                                            (equipment) => (
+                                                <EquipmentBadge
+                                                    key={equipment}
+                                                    color="red"
+                                                    equipment={equipment}
+                                                    equipmentList={
+                                                        excludedEquipmentFilter
+                                                    }
+                                                    setEquipmentList={
+                                                        setExcludedEquipmentFilter
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                    </div>
                                 </>
                             )}
 
