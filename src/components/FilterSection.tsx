@@ -143,7 +143,7 @@ export default function FilterSection({
                                         (equipment) => (
                                             <EquipmentBadge
                                                 key={equipment}
-                                                color={"green"}
+                                                color="green"
                                                 equipment={equipment}
                                                 equipmentList={
                                                     includedEquipmentFilter
@@ -166,7 +166,7 @@ export default function FilterSection({
                                         (equipment) => (
                                             <EquipmentBadge
                                                 key={equipment}
-                                                color={"red"}
+                                                color="red"
                                                 equipment={equipment}
                                                 equipmentList={
                                                     excludedEquipmentFilter

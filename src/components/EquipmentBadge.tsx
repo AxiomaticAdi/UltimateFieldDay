@@ -17,21 +17,36 @@ const Badge: React.FC<EquipmentBadgeProps> = ({
         setEquipmentList(equipmentList.filter((item) => item !== equipment));
     };
 
-    return (
-        <div className={`inline-flex text-sm`}>
-            <div
-                className={`px-2 pb-1 bg-${color}-200 rounded-l-md text-black`}
-            >
-                {equipment}
+    if (color === "green")
+        return (
+            <div className={`inline-flex text-sm`}>
+                <div
+                    className={`rounded-l-md bg-green-200 px-2 pb-1 text-black`}
+                >
+                    {equipment}
+                </div>
+                <button
+                    onClick={handleClose}
+                    className={`rounded-r-md bg-green-300 px-2 pb-1 text-black`}
+                >
+                    ×
+                </button>
             </div>
-            <button
-                onClick={handleClose}
-                className={`px-2 pb-1 bg-${color}-300 rounded-r-md text-black`}
-            >
-                ×
-            </button>
-        </div>
-    );
+        );
+    else
+        return (
+            <div className={`inline-flex text-sm`}>
+                <div className={`rounded-l-md bg-red-200 px-2 pb-1 text-black`}>
+                    {equipment}
+                </div>
+                <button
+                    onClick={handleClose}
+                    className={`rounded-r-md bg-red-300 px-2 pb-1 text-black`}
+                >
+                    ×
+                </button>
+            </div>
+        );
 };
 
 export default Badge;
