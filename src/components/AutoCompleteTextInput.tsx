@@ -19,9 +19,9 @@ export default function AutoCompleteTextInput({
     const handleSelect = (value: string) => {
         const newInput = new Set(chosenEquipment);
         if (newInput.has(value)) {
-            newInput.delete(value); // Remove if already present
+            newInput.delete(value);
         } else {
-            newInput.add(value); // Add if not present
+            newInput.add(value);
         }
         setChosenEquipment(Array.from(newInput));
 
