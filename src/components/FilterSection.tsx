@@ -5,6 +5,7 @@ import FilterCheckbox from "./FilterCheckbox";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import AutoCompleteTextInput from "./AutoCompleteTextInput";
+import EquipmentBadge from "./EquipmentBadge";
 
 const sortOptions = [{ name: "A - Z", href: "#", current: true }];
 
@@ -51,8 +52,6 @@ export default function FilterSection({
 }: FilterSection) {
     // Animation
     const [parentFilterSection] = useAutoAnimate();
-
-    // const [inclEquipInput, setInclEquipInput] = useState<string>("");
 
     return (
         <div className="py-3">
@@ -133,26 +132,22 @@ export default function FilterSection({
                             <legend className="font-bold">Equipment</legend>
                             {includedEquipmentFilter.length > 0 && (
                                 <>
-                                    <p>Included:</p>
+                                    <p className="block text-sm font-medium leading-6 text-gray-700">
+                                        Included:
+                                    </p>
                                     {includedEquipmentFilter.map(
                                         (equipment) => (
-                                            <p key={equipment}>
-                                                {equipment}
-                                                <button
-                                                    type="button"
-                                                    onClick={() =>
-                                                        setIncludedEquipmentFilter(
-                                                            includedEquipmentFilter.filter(
-                                                                (e) =>
-                                                                    e !==
-                                                                    equipment,
-                                                            ),
-                                                        )
-                                                    }
-                                                >
-                                                    x
-                                                </button>
-                                            </p>
+                                            <EquipmentBadge
+                                                key={equipment}
+                                                color={"green"}
+                                                equipment={equipment}
+                                                equipmentList={
+                                                    includedEquipmentFilter
+                                                }
+                                                setEquipmentList={
+                                                    setIncludedEquipmentFilter
+                                                }
+                                            />
                                         ),
                                     )}
                                 </>
