@@ -29,9 +29,9 @@ export default function GamesPage() {
     const [includedEquipmentFilter, setIncludedEquipmentFilter] = useState<
         string[]
     >([]);
-
-    // const [equipmentSuggestions, setEquipmentSuggestions] =
-    //     useState<string[]>("");
+    const [excludedEquipmentFilter, setExcludedEquipmentFilter] = useState<
+        string[]
+    >([]);
 
     const resetFilters = useCallback(() => {
         setIndoorFilter(true);
@@ -39,6 +39,8 @@ export default function GamesPage() {
         setLowActivityFilter(true);
         setMediumActivityFilter(true);
         setHighActivityFilter(true);
+        setIncludedEquipmentFilter([]);
+        setExcludedEquipmentFilter([]);
     }, []);
 
     // Animation
@@ -64,6 +66,7 @@ export default function GamesPage() {
                 mediumActivity: mediumActivityFilter,
                 highActivity: highActivityFilter,
                 includedEquipment: includedEquipmentFilter,
+                excludedEquipment: excludedEquipmentFilter,
             };
             const filteredGames = applyFilters(gamesList, filters);
 
@@ -74,6 +77,7 @@ export default function GamesPage() {
             setFilteredGamesList(filteredGames);
         }
     }, [
+        excludedEquipmentFilter,
         gamesList,
         highActivityFilter,
         includedEquipmentFilter,
@@ -123,6 +127,8 @@ export default function GamesPage() {
                     equipmentSet={equipmentSet}
                     includedEquipmentFilter={includedEquipmentFilter}
                     setIncludedEquipmentFilter={setIncludedEquipmentFilter}
+                    excludedEquipmentFilter={excludedEquipmentFilter}
+                    setExcludedEquipmentFilter={setExcludedEquipmentFilter}
                 />
 
                 <div
