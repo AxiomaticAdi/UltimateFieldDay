@@ -25,11 +25,13 @@ interface FilterSection {
     highActivityFilter: boolean;
     setHighActivityFilter: (value: boolean) => void;
 
-    resetFilters: () => void;
-
     equipmentSet: Set<string>;
     includedEquipmentFilter: string[];
     setIncludedEquipmentFilter: (value: string[]) => void;
+    excludedEquipmentFilter: string[];
+    setExcludedEquipmentFilter: (value: string[]) => void;
+
+    resetFilters: () => void;
 }
 
 export default function FilterSection({
@@ -44,11 +46,13 @@ export default function FilterSection({
     highActivityFilter,
     setHighActivityFilter,
 
-    resetFilters,
-
     equipmentSet,
     includedEquipmentFilter,
     setIncludedEquipmentFilter,
+    excludedEquipmentFilter,
+    setExcludedEquipmentFilter,
+
+    resetFilters,
 }: FilterSection) {
     // Animation
     const [parentFilterSection] = useAutoAnimate();
@@ -139,7 +143,7 @@ export default function FilterSection({
                                         (equipment) => (
                                             <EquipmentBadge
                                                 key={equipment}
-                                                color={"green"}
+                                                color="green"
                                                 equipment={equipment}
                                                 equipmentList={
                                                     includedEquipmentFilter
@@ -153,12 +157,44 @@ export default function FilterSection({
                                 </>
                             )}
 
+                            {excludedEquipmentFilter.length > 0 && (
+                                <>
+                                    <p className="block text-sm font-medium leading-6 text-gray-700">
+                                        Excluded:
+                                    </p>
+                                    {excludedEquipmentFilter.map(
+                                        (equipment) => (
+                                            <EquipmentBadge
+                                                key={equipment}
+                                                color="red"
+                                                equipment={equipment}
+                                                equipmentList={
+                                                    excludedEquipmentFilter
+                                                }
+                                                setEquipmentList={
+                                                    setExcludedEquipmentFilter
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </>
+                            )}
+
                             <div className="flex flex-col gap-2 pt-2">
                                 <AutoCompleteTextInput
+                                    placeholder="Include"
                                     equipmentSet={equipmentSet}
                                     chosenEquipment={includedEquipmentFilter}
                                     setChosenEquipment={
                                         setIncludedEquipmentFilter
+                                    }
+                                />
+                                <AutoCompleteTextInput
+                                    placeholder="Exclude"
+                                    equipmentSet={equipmentSet}
+                                    chosenEquipment={excludedEquipmentFilter}
+                                    setChosenEquipment={
+                                        setExcludedEquipmentFilter
                                     }
                                 />
                             </div>

@@ -2,12 +2,14 @@ import { useMemo, useState } from "react";
 import { Combobox } from "@headlessui/react";
 
 interface AutoCompleteTextInputProps {
+    placeholder: string;
     equipmentSet: Set<string>;
     chosenEquipment: string[];
     setChosenEquipment: (value: string[]) => void;
 }
 
 export default function AutoCompleteTextInput({
+    placeholder,
     equipmentSet,
     chosenEquipment,
     setChosenEquipment,
@@ -17,9 +19,9 @@ export default function AutoCompleteTextInput({
     const handleSelect = (value: string) => {
         const newInput = new Set(chosenEquipment);
         if (newInput.has(value)) {
-            newInput.delete(value); // Remove if already present
+            newInput.delete(value);
         } else {
-            newInput.add(value); // Add if not present
+            newInput.add(value);
         }
         setChosenEquipment(Array.from(newInput));
 
@@ -50,7 +52,7 @@ export default function AutoCompleteTextInput({
             <Combobox.Input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Include"
+                placeholder={placeholder}
                 className="block w-full rounded-md border-0 bg-transparent py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
             <Combobox.Options className="max-h-80 scroll-py-2 divide-y divide-gray-500 overflow-y-auto rounded-md bg-indigo-800 bg-opacity-25">
