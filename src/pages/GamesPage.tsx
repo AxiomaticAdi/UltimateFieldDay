@@ -26,19 +26,27 @@ export default function GamesPage() {
         useState<boolean>(true);
     const [highActivityFilter, setHighActivityFilter] = useState<boolean>(true);
 
+    const [includedEquipmentFilter, setIncludedEquipmentFilter] = useState<
+        string[]
+    >([]);
+
+    // const [equipmentSuggestions, setEquipmentSuggestions] =
+    //     useState<string[]>("");
+
     const resetFilters = useCallback(() => {
         setIndoorFilter(true);
         setOutdoorFilter(true);
         setLowActivityFilter(true);
         setMediumActivityFilter(true);
         setHighActivityFilter(true);
-    }, [setIndoorFilter, setOutdoorFilter]);
+    }, []);
 
     // Animation
     const [parentGameCards] = useAutoAnimate();
 
-    // Fetch games on first load
+    // On first load
     useEffect(() => {
+        // Fetch Games
         if (gamesList === undefined) {
             GamesService.fetchGamesAsync().then((res) => {
                 setGameList(res);
@@ -55,6 +63,7 @@ export default function GamesPage() {
                 lowActivity: lowActivityFilter,
                 mediumActivity: mediumActivityFilter,
                 highActivity: highActivityFilter,
+                includedEquipment: includedEquipmentFilter,
             };
             const filteredGames = applyFilters(gamesList, filters);
 
@@ -67,6 +76,7 @@ export default function GamesPage() {
     }, [
         gamesList,
         highActivityFilter,
+        includedEquipmentFilter,
         indoorFilter,
         lowActivityFilter,
         mediumActivityFilter,
@@ -81,6 +91,19 @@ export default function GamesPage() {
             </AppFrame>
         );
     }
+
+    // Calculate all equipment values
+    const getAllEquipment = (games: Game[] | undefined): Set<string> => {
+        const tempEquipmentSet = new Set<string>();
+        if (games) {
+            games.forEach((game) => {
+                game.equipment.forEach((item) => tempEquipmentSet.add(item));
+            });
+        }
+        return tempEquipmentSet;
+    };
+    const equipmentSet: Set<string> = getAllEquipment(gamesList);
+    console.log(equipmentSet);
 
     return (
         <AppFrame>
@@ -97,6 +120,9 @@ export default function GamesPage() {
                     highActivityFilter={highActivityFilter}
                     setHighActivityFilter={setHighActivityFilter}
                     resetFilters={resetFilters}
+                    equipmentSet={equipmentSet}
+                    includedEquipmentFilter={includedEquipmentFilter}
+                    setIncludedEquipmentFilter={setIncludedEquipmentFilter}
                 />
 
                 <div
