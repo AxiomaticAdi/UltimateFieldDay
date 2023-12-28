@@ -132,7 +132,7 @@ export default function SubmitGamePage() {
                             <NumberInput
                                 label={"Minimum Player Count"}
                                 name={"gameMinPlayers"}
-                                placeholder={"2"}
+                                placeholder={"1"}
                                 min={1}
                                 max={100}
                                 value={gameMinPlayers}
