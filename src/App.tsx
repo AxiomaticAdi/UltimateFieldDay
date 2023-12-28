@@ -15,8 +15,9 @@ export default function App() {
                     }}
                 />
             </div>
-            <div className="flex w-full justify-center">
-                <div className="flex max-w-2xl flex-col items-center justify-center pt-60 text-center">
+            <div className="flex w-full flex-col items-center">
+                <div className="h-[25vh]"></div>
+                <div className="flex max-w-2xl flex-col items-center justify-start px-4 text-center">
                     <img className="h-12" src="/FieldDayLogo.svg" alt="logo" />
                     <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
                         Finding the right games{" "}
