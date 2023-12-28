@@ -5,6 +5,9 @@ import RadioOptions from "../components/form/RadioOptions";
 import NumberInput from "../components/form/NumberInput";
 import { Link } from "react-router-dom";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { SubmitGameFormPayload } from "../types/FormsTypes";
+import { submitGame } from "../services/GoogleFormsService";
+import SuccessModal from "../components/SuccessModal";
 
 const gameSettingOptions = [
     { label: "Indoor", value: "indoor" },
@@ -29,27 +32,47 @@ export default function SubmitGamePage() {
     const [gameActivityLevel, setGameActivityLevel] = useState<string>("");
     const [userEmail, setUserEmail] = useState("");
 
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+    const clearForm = () => {
+        setGameTitle("");
+        setGameSetup("");
+        setGameRules("");
+        setGameEquipment("");
+        setGameMinPlayers(undefined);
+        setGameMaxPlayers(undefined);
+        setGameSetting("");
+        setGameActivityLevel("");
+        setUserEmail("");
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const response = {
-            gameTitle: gameTitle || null,
-            gameSetup: gameSetup || null,
-            gameRules: gameRules || null,
+        const submitGamePayload: SubmitGameFormPayload = {
+            gameTitle: gameTitle,
+            gameSetup: gameSetup,
+            gameRules: gameRules,
             gameEquipment: gameEquipment || null,
             gameMinPlayers: gameMinPlayers || null,
             gameMaxPlayers: gameMaxPlayers || null,
-            gameSetting: gameSetting || null,
-            gameActivityLevel: gameActivityLevel || null,
+            gameSetting: gameSetting,
+            gameActivityLevel: gameActivityLevel,
             userEmail: userEmail || null,
         };
-
-        console.log(response);
+        console.log(submitGamePayload);
+        submitGame(submitGamePayload);
+        clearForm();
+        setShowSuccessModal(true);
     };
 
     return (
         <AppFrame>
             <form onSubmit={handleSubmit} className="px-4">
+                <SuccessModal
+                    isOpen={showSuccessModal}
+                    setIsOpen={setShowSuccessModal}
+                />
                 <div className="text-white">
                     <div className="px-6 py-24 sm:py-32 lg:px-8">
                         <div className="mx-auto max-w-2xl text-center">
