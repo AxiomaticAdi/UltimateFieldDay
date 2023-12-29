@@ -10,46 +10,55 @@ export default function AboutPage() {
                         <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
                             About
                         </h2>
-                        <div className="mt-6 flex flex-col gap-4 px-4 text-left text-lg leading-8">
+                        <div className="mt-6 flex flex-col gap-8 px-4 text-left text-lg leading-8">
                             <p>
-                                Born from the nostalgia of college days where my
-                                friends and I would compete to see who can{" "}
+                                Born from the nostalgia of my college days where
+                                my friends and I would compete to see who can
+                                stuff the most{" "}
                                 <CustomLink linkTo={"/games/30"}>
-                                    stuff the most marshmallows in their mouth
+                                    marshmallows in their mouth
                                 </CustomLink>{" "}
-                                at once, or who could scream-run the longest
-                                without ever dropping in volume.
+                                at once or{" "}
+                                <CustomLink linkTo={"/games/30"}>
+                                    scream-run
+                                </CustomLink>{" "}
+                                the furthest.
                             </p>
                             <p>
-                                Inspired by the joy of finding a silly
-                                booty-shaking challenge that would bring out the
-                                deepest belly laughs from an otherwise reserved
-                                uncle at our annual Family Olympics.
+                                Inspired by the joy of a{" "}
+                                <CustomLink linkTo={"/games/23"}>
+                                    booty-shaking challenge
+                                </CustomLink>{" "}
+                                that brought out the deepest belly laughs from
+                                an otherwise reserved uncle at our annual Family
+                                Olympics.
                             </p>
                             <p>
                                 Molded by the frustration of sorting through the
                                 thousands of game ideas scattered online and
                                 discarding most of what I found due to mismatch
-                                of group sizes, lack of equipment, or just not
-                                finding the “perfect game.”
+                                of group size, lack of equipment, or many other
+                                factors.
                             </p>
                             <p>
                                 That's why I created this treasure trove - a
                                 free, fully searchable repository of field day
-                                games that caters to settings, group sizes, and
-                                levels of physical ability. So, dive in, pick
-                                the perfect game, and don't forget to{" "}
+                                games that caters to all settings, group sizes,
+                                and levels of physical ability. So, dive in,
+                                pick the perfect game, and don't forget to{" "}
                                 <CustomLink linkTo={"/submit"}>
                                     add your own favorite games
                                 </CustomLink>{" "}
                                 to our ever-expanding catalog.
                             </p>
                         </div>
-                        <img
-                            src="/FieldDayFanPic.webp"
-                            className="mx-auto mt-12 h-48 rounded-full"
-                            alt="photo of a player playing a game of egg spoon relay"
-                        />
+                        <CustomLink linkTo={"/games/6"}>
+                            <img
+                                src="/FieldDayFanPic.webp"
+                                className="mx-auto mt-12 h-48 rounded-full"
+                                alt="photo of a player playing a game of egg spoon relay"
+                            />
+                        </CustomLink>
                     </div>
                 </div>
             </div>
