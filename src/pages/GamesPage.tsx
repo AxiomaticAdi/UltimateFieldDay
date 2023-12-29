@@ -114,7 +114,6 @@ export default function GamesPage() {
         return tempEquipmentSet;
     };
     const equipmentSet: Set<string> = getAllEquipment(gamesList);
-    console.log(equipmentSet);
 
     return (
         <AppFrame>

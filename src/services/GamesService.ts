@@ -4,6 +4,8 @@ import { Game, GameActivityLevel, GameSetting } from "../types/GameTypes";
 const dataEndpoint =
     "https://docs.google.com/spreadsheets/d/1puezgtVv4978tGpoEjxrW-GALXBaUSx6_SBmFZRABlw/gviz/tq?";
 
+let games: Game[] | undefined;
+
 type SheetCell = {
     v: string | number;
     f: string | undefined;
@@ -81,23 +83,28 @@ function mapObjectToGames(resultObj: any): Game[] | undefined {
 }
 
 async function fetchGamesAsync(): Promise<Game[]> {
-    const result = await axios.get<string>(dataEndpoint, {}).then((res) => {
-        // strip out the setResponse text from the data
-        let raw: string = res.data;
-        const startText = ".setResponse(";
-        raw = raw.substring(raw.indexOf(startText) + startText.length);
-        raw = raw.substring(0, raw.length - 2);
-        const resultObj = JSON.parse(raw);
-        const matches = mapObjectToGames(resultObj);
+    if (games !== undefined) {
+        return games;
+    } else {
+        console.log("Fetching games...");
+        const result = await axios.get<string>(dataEndpoint, {}).then((res) => {
+            // strip out the setResponse text from the data
+            let raw: string = res.data;
+            const startText = ".setResponse(";
+            raw = raw.substring(raw.indexOf(startText) + startText.length);
+            raw = raw.substring(0, raw.length - 2);
+            const resultObj = JSON.parse(raw);
+            const matches = mapObjectToGames(resultObj);
 
-        if (matches !== undefined) {
-            return matches;
-        } else {
-            console.log("mapping resultObj to matches failed.");
-        }
-    });
-
-    return result ?? [];
+            if (matches !== undefined) {
+                games = matches;
+                return matches;
+            } else {
+                console.log("mapping resultObj to matches failed.");
+            }
+        });
+        return result ?? [];
+    }
 }
 
 export const GamesService = {
