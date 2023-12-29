@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import AppFrame from "../components/AppFrame";
+import CustomLink from "../components/CustomLink";
 
 export default function AboutPage() {
     return (
@@ -10,13 +10,15 @@ export default function AboutPage() {
                         <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
                             About
                         </h2>
-                        <div className="mt-6 flex flex-col gap-4 px-4 text-justify text-lg leading-8">
+                        <div className="mt-6 flex flex-col gap-4 px-4 text-left text-lg leading-8">
                             <p>
                                 Born from the nostalgia of college days where my
-                                friends and I would compete to see who can stuff
-                                the most marshmallows in their mouth at once, or
-                                who could scream-run the longest without ever
-                                dropping in volume.
+                                friends and I would compete to see who can{" "}
+                                <CustomLink linkTo={"/games/30"}>
+                                    stuff the most marshmallows in their mouth
+                                </CustomLink>{" "}
+                                at once, or who could scream-run the longest
+                                without ever dropping in volume.
                             </p>
                             <p>
                                 Inspired by the joy of finding a silly
@@ -37,15 +39,16 @@ export default function AboutPage() {
                                 games that caters to settings, group sizes, and
                                 levels of physical ability. So, dive in, pick
                                 the perfect game, and don't forget to{" "}
-                                <Link to={"/submit"}>
+                                <CustomLink linkTo={"/submit"}>
                                     add your own favorite games
-                                </Link>{" "}
+                                </CustomLink>{" "}
                                 to our ever-expanding catalog.
                             </p>
                         </div>
                         <img
                             src="/FieldDayFanPic.webp"
-                            className="mx-auto mt-12 h-48 rounded-full hover:animate-spin"
+                            className="mx-auto mt-12 h-48 rounded-full"
+                            alt="photo of a player playing a game of egg spoon relay"
                         />
                     </div>
                 </div>
