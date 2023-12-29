@@ -4,6 +4,7 @@ import { GamesService } from "../services/GamesService";
 import { Game } from "../types/GameTypes";
 import GameInfoSection from "../components/GameInfoSection";
 import BasicPageFrame from "../components/BasicPageFrame";
+import GameCategoryInfoSummary from "../components/GameInfoSummary";
 
 export default function GameDetailsPage() {
     const { gameId } = useParams();
@@ -46,6 +47,7 @@ export default function GameDetailsPage() {
                 <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
                     {game.name}
                 </h2>
+
                 {game.setup && (
                     <GameInfoSection
                         infoLabel="Setup"
@@ -58,6 +60,9 @@ export default function GameDetailsPage() {
                         infoSection={game.rules}
                     />
                 )}
+            </div>
+            <div>
+                <GameCategoryInfoSummary game={game} />
             </div>
         </BasicPageFrame>
     );
