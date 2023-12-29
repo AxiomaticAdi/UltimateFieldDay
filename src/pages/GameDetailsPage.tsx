@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { GamesService } from "../services/GamesService";
 import { Game } from "../types/GameTypes";
 import AppFrame from "../components/AppFrame";
+import GameInfoSection from "../components/GameInfoSection";
 
 export default function GameDetailsPage() {
     const { gameId } = useParams();
@@ -40,14 +41,22 @@ export default function GameDetailsPage() {
         <AppFrame>
             <div className="flex flex-col">
                 <div className="px-6 py-24 text-white sm:py-32 lg:px-8">
-                    <div className="mx-auto max-w-2xl text-center">
+                    <div className="mx-auto flex max-w-lg flex-col gap-12 text-center">
                         <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
                             {game.name}
                         </h2>
-                        <div className="mt-6 flex flex-col gap-4 px-4 text-justify text-lg leading-8">
-                            <p>{game.setup}</p>
-                            <p>{game.rules}</p>
-                        </div>
+                        {game.setup && (
+                            <GameInfoSection
+                                infoLabel="Setup"
+                                infoSection={game.setup}
+                            />
+                        )}
+                        {game.rules && (
+                            <GameInfoSection
+                                infoLabel="Rules"
+                                infoSection={game.rules}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
