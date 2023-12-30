@@ -101,7 +101,7 @@ export default function SubmitGamePage() {
                         <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
                             <div className="sm:col-span-4">
                                 <label
-                                    htmlFor="inputGameTitle"
+                                    htmlFor="gameTitle"
                                     className="block text-sm font-medium leading-6"
                                 >
                                     Title
