@@ -4,7 +4,10 @@ import { GamesService } from "../services/GamesService";
 import { Game } from "../types/GameTypes";
 import GameInfoSection from "../components/GameInfoSection";
 import BasicPageFrame from "../components/BasicPageFrame";
-import GameCategoryInfoSummary from "../components/GameInfoSummary";
+import YouTubeEmbed from "../components/YouTubeEmbed";
+import GameStatsCard from "../components/GameStatsCard";
+import { fieldExists } from "../logic/existing";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function GameDetailsPage() {
     const { gameId } = useParams();
@@ -21,16 +24,16 @@ export default function GameDetailsPage() {
         fetchGame();
     }, [gameId]);
 
+    // To show while game is loading
     if (game === undefined) {
         return (
             <BasicPageFrame>
-                <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
-                    Game not found!
-                </h2>
+                <LoadingSpinner />
             </BasicPageFrame>
         );
     }
 
+    // To show if gameId does not exist
     if (game === null) {
         return (
             <BasicPageFrame>
@@ -47,22 +50,25 @@ export default function GameDetailsPage() {
                 <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
                     {game.name}
                 </h2>
+                <div>
+                    <GameStatsCard game={game} />
+                </div>
 
-                {game.setup && (
+                {fieldExists(game.setup) && game.setup && (
                     <GameInfoSection
                         infoLabel="Setup"
                         infoSection={game.setup}
                     />
                 )}
-                {game.rules && (
+                {fieldExists(game.rules) && game.rules && (
                     <GameInfoSection
                         infoLabel="Rules"
                         infoSection={game.rules}
                     />
                 )}
-            </div>
-            <div>
-                <GameCategoryInfoSummary game={game} />
+                {fieldExists(game.yt) && game.yt && (
+                    <YouTubeEmbed ytLink={game.yt} />
+                )}
             </div>
         </BasicPageFrame>
     );

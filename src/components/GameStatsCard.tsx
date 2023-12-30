@@ -1,12 +1,10 @@
 import { Game } from "../types/GameTypes";
 
-interface GameCategoryInfoSummaryProps {
+interface GameStatsCardProps {
     game: Game;
 }
 
-export default function GameCategoryInfoSummary(
-    game: GameCategoryInfoSummaryProps,
-) {
+export default function GameStatsCard(game: GameStatsCardProps) {
     const maxPlayerCount = (count: number) => {
         if (count === 100) {
             return `${count}+`;
@@ -27,7 +25,7 @@ export default function GameCategoryInfoSummary(
     ];
 
     return (
-        <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-2 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
             {gameCategoryInfo.map((stat) => (
                 <div key={stat.id} className="flex flex-col bg-indigo-800 p-8">
                     <dt className="text-sm font-semibold leading-6 text-gray-300">

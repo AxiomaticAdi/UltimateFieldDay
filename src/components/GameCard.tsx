@@ -2,18 +2,7 @@ import { Game } from "../types/GameTypes";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
-
-function fieldExists(field: string | undefined): boolean {
-    if (
-        field === undefined ||
-        field === null ||
-        field === "undefined" ||
-        field === "null"
-    ) {
-        return false;
-    }
-    return true;
-}
+import { fieldExists } from "../logic/existing";
 
 function equipmentListToString(equipmentList: string[]): string {
     const formattedList = equipmentList.map(
