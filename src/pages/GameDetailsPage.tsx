@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { GamesService } from "../services/GamesService";
 import { Game } from "../types/GameTypes";
 import GameInfoSection from "../components/GameInfoSection";
@@ -69,6 +69,15 @@ export default function GameDetailsPage() {
                 {fieldExists(game.yt) && game.yt && (
                     <YouTubeEmbed ytLink={game.yt} />
                 )}
+
+                <div>
+                    <Link
+                        to="/games"
+                        className="text-sm font-semibold leading-6 text-white"
+                    >
+                        <span aria-hidden="true">&larr;</span> Back to games
+                    </Link>
+                </div>
             </div>
         </BasicPageFrame>
     );
