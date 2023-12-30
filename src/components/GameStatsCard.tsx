@@ -27,7 +27,7 @@ export default function GameStatsCard(game: GameStatsCardProps) {
     return (
         <dl className="mt-2 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
             {gameCategoryInfo.map((stat) => (
-                <div key={stat.id} className="flex flex-col bg-indigo-800 p-8">
+                <div key={stat.id} className="flex flex-col bg-indigo-700 p-8">
                     <dt className="text-sm font-semibold leading-6 text-gray-300">
                         {stat.name}
                     </dt>
