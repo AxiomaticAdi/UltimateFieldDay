@@ -33,10 +33,10 @@ export default function AboutPage() {
                     many other factors.
                 </p>
                 <p>
-                    That's why I created this treasure trove - a free, fully
-                    searchable repository of field day games that caters to all
-                    settings, group sizes, and levels of physical ability. So,
-                    dive in, pick the perfect game, and don't forget to{" "}
+                    That's why I created this site - a free, fully searchable
+                    repository of field day games that caters to all settings,
+                    group sizes, and levels of physical ability. So, dive in,
+                    pick the perfect game, and don't forget to{" "}
                     <CustomLink linkTo={"/submit"}>
                         add your own favorite games
                     </CustomLink>{" "}

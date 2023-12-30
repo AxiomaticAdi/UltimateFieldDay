@@ -50,6 +50,8 @@ export default function Header() {
                         </Link>
                     ))}
                 </div>
+                <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
+                {/* COMMENTED OUT FOR NOW - LOG IN BUTTON
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
                     <a
                         href="#"
@@ -57,7 +59,7 @@ export default function Header() {
                     >
                         Log in <span aria-hidden="true">&rarr;</span>
                     </a>
-                </div>
+                </div> */}
             </nav>
             <Dialog
                 as="div"
@@ -98,6 +100,7 @@ export default function Header() {
                                     </a>
                                 ))}
                             </div>
+                            {/* COMMENTED OUT FOR NOW - LOG IN BUTTON
                             <div className="py-6">
                                 <a
                                     href="#"
@@ -105,7 +108,7 @@ export default function Header() {
                                 >
                                     Log in
                                 </a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </Dialog.Panel>
