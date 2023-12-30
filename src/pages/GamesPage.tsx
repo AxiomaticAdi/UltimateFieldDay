@@ -6,6 +6,8 @@ import { FilterStates } from "../types/FilterTypes";
 import { alphabeticalSort } from "../logic/sorting";
 
 import AppFrame from "../components/AppFrame";
+import BasicPageFrame from "../components/BasicPageFrame";
+import LoadingSpinner from "../components/LoadingSpinner";
 import GameCard from "../components/GameCard";
 import FilterSection from "../components/FilterSection";
 
@@ -94,12 +96,12 @@ export default function GamesPage() {
         playerCountFilter,
     ]);
 
-    // if there are no games hydrated yet, render blank page
+    // if there are no games hydrated yet, show loading spinner
     if (filteredGamesList === undefined) {
         return (
-            <AppFrame>
-                <div></div>
-            </AppFrame>
+            <BasicPageFrame>
+                <LoadingSpinner />
+            </BasicPageFrame>
         );
     }
 
