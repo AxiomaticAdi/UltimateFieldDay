@@ -3,7 +3,6 @@ interface YouTubeEmbedProps {
 }
 
 export default function YouTubeEmbed({ ytLink }: YouTubeEmbedProps) {
-    console.log("Attempt to get video ID");
     let videoId = ytLink.split("watch?v=")[1] ?? "";
     videoId = videoId.split("&")[0] ?? "";
 
