@@ -11,7 +11,7 @@ export default function GameCardModal({ game }: { game: Game }) {
         <div className="p-5">
             <button
                 onClick={() => setOpen(true)}
-                className="h-16 w-48 rounded-xl bg-indigo-600 text-center text-white hover:cursor-pointer hover:bg-indigo-500"
+                className="h-16 w-48 rounded-xl bg-indigo-600 px-2 text-center text-white hover:cursor-pointer hover:bg-indigo-500"
             >
                 <strong>{game.name}</strong>
             </button>
