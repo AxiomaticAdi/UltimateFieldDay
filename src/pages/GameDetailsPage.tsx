@@ -6,7 +6,7 @@ import GameInfoSection from "../components/GameInfoSection";
 import BasicPageFrame from "../components/BasicPageFrame";
 import YouTubeEmbed from "../components/YouTubeEmbed";
 import GameStatsCard from "../components/GameStatsCard";
-import { fieldExists } from "../logic/existing";
+import { equipmentListToString, fieldExists } from "../logic/modifyingFields";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function GameDetailsPage() {
@@ -54,6 +54,12 @@ export default function GameDetailsPage() {
                     <GameStatsCard game={game} />
                 </div>
 
+                {fieldExists(game.equipment[0]) && game.equipment && (
+                    <GameInfoSection
+                        infoLabel="Equipment"
+                        infoSection={equipmentListToString(game.equipment)}
+                    />
+                )}
                 {fieldExists(game.setup) && game.setup && (
                     <GameInfoSection
                         infoLabel="Setup"

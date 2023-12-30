@@ -38,7 +38,9 @@ export function sheetRowToMatch(cell: SheetRow, id: string): Game {
               : GameActivityLevel.High;
 
     const rawEquipment = String(cell.c[++column]?.v).split(",") ?? "";
-    const equipment: string[] = rawEquipment.map((item) => item.trim());
+    const equipment: string[] = rawEquipment.map((item) =>
+        item.trim().toLowerCase(),
+    );
 
     const minCount = Number(cell.c[++column]?.v) ?? 0;
     const maxCount = Number(cell.c[++column]?.v) ?? 0;

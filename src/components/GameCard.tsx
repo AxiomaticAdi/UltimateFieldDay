@@ -2,14 +2,7 @@ import { Game } from "../types/GameTypes";
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
-import { fieldExists } from "../logic/existing";
-
-function equipmentListToString(equipmentList: string[]): string {
-    const formattedList = equipmentList.map(
-        (item) => item.charAt(0).toUpperCase() + item.slice(1).toLowerCase(),
-    );
-    return formattedList.join(", ");
-}
+import { equipmentListToString, fieldExists } from "../logic/modifyingFields";
 
 export default function GameCardModal({ game }: { game: Game }) {
     const [open, setOpen] = useState(false);
