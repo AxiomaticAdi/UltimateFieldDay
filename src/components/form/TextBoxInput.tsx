@@ -16,7 +16,7 @@ export default function InputTextBox({
     return (
         <div className="col-span-full">
             <label
-                htmlFor={"inputGame" + title}
+                htmlFor={"game" + title}
                 className="block text-sm font-medium leading-6 "
             >
                 {title}
