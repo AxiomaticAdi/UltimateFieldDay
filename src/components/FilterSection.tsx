@@ -6,6 +6,7 @@ import { useAutoAnimate } from "@formkit/auto-animate/react";
 import AutoCompleteTextInput from "./AutoCompleteTextInput";
 import EquipmentBadge from "./EquipmentBadge";
 import PlayerCountInput from "./PlayerCountInput";
+import SearchBar from "./SearchBar";
 
 interface FilterSection {
     indoorFilter: boolean;
@@ -28,6 +29,9 @@ interface FilterSection {
     playerCountFilter: number | undefined;
     setPlayerCountFilter: (value: number | undefined) => void;
 
+    searchQuery: string;
+    setSearchQuery: (value: string) => void;
+
     resetFilters: () => void;
 }
 
@@ -49,6 +53,9 @@ export default function FilterSection({
     excludedEquipmentFilter,
     setExcludedEquipmentFilter,
 
+    searchQuery,
+    setSearchQuery,
+
     playerCountFilter,
     setPlayerCountFilter,
 
@@ -69,23 +76,26 @@ export default function FilterSection({
                     Filters
                 </h2>
                 <div className="relative col-start-1 row-start-1 py-4">
-                    <div className="mx-auto flex max-w-7xl space-x-6 divide-x divide-indigo-400 px-4 text-sm sm:px-6 lg:px-8">
-                        <Disclosure.Button className="group flex items-center font-medium text-gray-500 hover:text-gray-200">
+                    <div className="mx-auto flex max-w-7xl justify-between sm:px-6 lg:px-8">
+                        <Disclosure.Button className="group flex items-center text-gray-500 hover:text-gray-200">
                             <FunnelIcon
                                 className="mr-2 h-5 w-5 flex-none"
                                 aria-hidden="true"
                             />
                             Filters
                         </Disclosure.Button>
-                        <div className="pl-6">
-                            <button
-                                type="button"
-                                className="text-gray-500 hover:text-gray-200"
-                                onClick={resetFilters}
-                            >
-                                Reset
-                            </button>
-                        </div>
+                        <SearchBar
+                            searchQuery={searchQuery}
+                            setSearchQuery={setSearchQuery}
+                        />
+
+                        <button
+                            type="button"
+                            className="text-gray-500 hover:text-gray-200"
+                            onClick={resetFilters}
+                        >
+                            Reset
+                        </button>
                     </div>
                 </div>
                 <Disclosure.Panel className="rounded-b-lg border-t border-indigo-400 bg-slate-200 py-10">

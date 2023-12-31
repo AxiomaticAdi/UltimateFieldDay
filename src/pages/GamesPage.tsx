@@ -49,6 +49,7 @@ export default function GamesPage() {
         setIncludedEquipmentFilter([]);
         setExcludedEquipmentFilter([]);
         setPlayerCountFilter(undefined);
+        setSearchQuery("");
     }, []);
 
     // Search
@@ -145,9 +146,6 @@ export default function GamesPage() {
                     setExcludedEquipmentFilter={setExcludedEquipmentFilter}
                     playerCountFilter={playerCountFilter}
                     setPlayerCountFilter={setPlayerCountFilter}
-                />
-
-                <SearchBar
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
                 />
