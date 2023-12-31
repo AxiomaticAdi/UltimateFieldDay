@@ -76,7 +76,7 @@ export default function FilterSection({
                     Filters
                 </h2>
                 <div className="relative col-start-1 row-start-1 py-4">
-                    <div className="mx-auto flex max-w-7xl justify-between sm:px-6 lg:px-8">
+                    <div className="flex flex-col items-center justify-between gap-y-4 sm:flex-row">
                         <Disclosure.Button className="group flex items-center text-gray-500 hover:text-gray-200">
                             <FunnelIcon
                                 className="mr-2 h-5 w-5 flex-none"
