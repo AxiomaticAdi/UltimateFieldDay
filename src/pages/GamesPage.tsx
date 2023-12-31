@@ -13,7 +13,6 @@ import FilterSection from "../components/FilterSection";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { applyFilters } from "../logic/filtering";
-import SearchBar from "../components/SearchBar";
 
 export default function GamesPage() {
     const [gamesList, setGameList] = useState<Game[] | undefined>();
