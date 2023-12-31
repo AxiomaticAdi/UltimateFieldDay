@@ -22,11 +22,14 @@ export const applyFilters = (games: Game[], filters: FilterStates): Game[] => {
               game.maxPlayerCount >= filters.playerCount
             : true;
 
+        const searchFilter = searchGameNameFilter(game, filters.searchQuery);
+
         return (
             settingFilter &&
             activityFilter &&
             equipmentFilter &&
-            playerCountFilter
+            playerCountFilter &&
+            searchFilter
         );
     });
 };
@@ -59,4 +62,11 @@ const excludeEquipmentFilter = (game: Game, excludedEquipment: string[]) => {
     }
 
     return true;
+};
+
+const searchGameNameFilter = (game: Game, searchQuery: string): boolean => {
+    if (!searchQuery) {
+        return true;
+    }
+    return game.name.toLowerCase().includes(searchQuery.toLowerCase());
 };

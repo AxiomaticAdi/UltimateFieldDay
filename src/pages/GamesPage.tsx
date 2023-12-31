@@ -13,6 +13,7 @@ import FilterSection from "../components/FilterSection";
 
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { applyFilters } from "../logic/filtering";
+import SearchBar from "../components/SearchBar";
 
 export default function GamesPage() {
     const [gamesList, setGameList] = useState<Game[] | undefined>();
@@ -50,6 +51,9 @@ export default function GamesPage() {
         setPlayerCountFilter(undefined);
     }, []);
 
+    // Search
+    const [searchQuery, setSearchQuery] = useState<string>("");
+
     // Animation
     const [parentGameCards] = useAutoAnimate();
 
@@ -75,6 +79,7 @@ export default function GamesPage() {
                 includedEquipment: includedEquipmentFilter,
                 excludedEquipment: excludedEquipmentFilter,
                 playerCount: playerCountFilter,
+                searchQuery: searchQuery,
             };
             const filteredGames = applyFilters(gamesList, filters);
 
@@ -94,6 +99,7 @@ export default function GamesPage() {
         mediumActivityFilter,
         outdoorFilter,
         playerCountFilter,
+        searchQuery,
     ]);
 
     // if there are no games hydrated yet, show loading spinner
@@ -119,7 +125,7 @@ export default function GamesPage() {
 
     return (
         <AppFrame>
-            <div className="w-full">
+            <div className="flex w-full flex-col">
                 <FilterSection
                     indoorFilter={indoorFilter}
                     setIndoorFilter={setIndoorFilter}
@@ -139,6 +145,11 @@ export default function GamesPage() {
                     setExcludedEquipmentFilter={setExcludedEquipmentFilter}
                     playerCountFilter={playerCountFilter}
                     setPlayerCountFilter={setPlayerCountFilter}
+                />
+
+                <SearchBar
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
                 />
 
                 <div

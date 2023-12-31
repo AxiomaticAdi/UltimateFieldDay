@@ -7,4 +7,5 @@ export type FilterStates = {
     includedEquipment: string[];
     excludedEquipment: string[];
     playerCount: number | undefined;
+    searchQuery: string;
 };
