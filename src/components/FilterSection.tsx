@@ -65,7 +65,7 @@ export default function FilterSection({
     const [parentFilterSection] = useAutoAnimate();
 
     return (
-        <div className="py-3">
+        <div className="pb-2 pt-6">
             <Disclosure
                 as="section"
                 aria-labelledby="filter-heading"
