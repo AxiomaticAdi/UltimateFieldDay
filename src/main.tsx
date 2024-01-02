@@ -23,7 +23,7 @@ const router = createHashRouter([
         errorElement: <ErrorPage />,
     },
     {
-        path: "/games/:gameId",
+        path: "/games/:gameSlug",
         element: <GameDetailsPage />,
         errorElement: <ErrorPage />,
     },

@@ -60,7 +60,6 @@ export default function SubmitGamePage() {
             gameActivityLevel: gameActivityLevel,
             userEmail: userEmail || null,
         };
-        console.log(submitGamePayload);
         submitGame(submitGamePayload);
         clearForm();
         setShowSuccessModal(true);

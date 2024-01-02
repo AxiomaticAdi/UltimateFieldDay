@@ -6,23 +6,28 @@ import GameInfoSection from "../components/GameInfoSection";
 import BasicPageFrame from "../components/BasicPageFrame";
 import YouTubeEmbed from "../components/YouTubeEmbed";
 import GameStatsCard from "../components/GameStatsCard";
-import { equipmentListToString, fieldExists } from "../logic/modifyingFields";
+import {
+    equipmentListToString,
+    fieldExists,
+    slugToGameId,
+} from "../logic/modifyingFields";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function GameDetailsPage() {
-    const { gameId } = useParams();
+    const { gameSlug } = useParams();
     const [game, setGame] = useState<Game | null | undefined>(undefined);
 
     useEffect(() => {
         const fetchGame = async () => {
             const gamesList = await GamesService.fetchGamesAsync();
-            if (gameId !== undefined && gamesList) {
+            if (gameSlug !== undefined && gamesList) {
+                const gameId = slugToGameId(gameSlug);
                 const selectedGame = gamesList.find((g) => g.gameId === gameId);
                 setGame(selectedGame || null);
             }
         };
         fetchGame();
-    }, [gameId]);
+    }, [gameSlug]);
 
     // To show while game is loading
     if (game === undefined) {
