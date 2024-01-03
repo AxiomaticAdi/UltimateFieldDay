@@ -68,6 +68,7 @@ export default function FilterSection({
         <div className="pb-2 pt-6">
             <Disclosure
                 as="section"
+                defaultOpen={true}
                 aria-labelledby="filter-heading"
                 className="grid items-center"
                 ref={parentFilterSection}
@@ -98,10 +99,12 @@ export default function FilterSection({
                         </button>
                     </div>
                 </div>
-                <Disclosure.Panel className="rounded-b-lg border-t border-indigo-400 bg-slate-200 py-10">
-                    <div className="flex flex-row flex-wrap gap-y-4">
+                <Disclosure.Panel className="mx-4 rounded-lg border-t border-indigo-400 bg-slate-200 py-10 opacity-80 hover:opacity-100">
+                    <div className="flex flex-row flex-wrap justify-evenly gap-y-8">
                         <fieldset className="px-4">
-                            <legend className="font-bold">Setting</legend>
+                            <legend className="text-center font-bold">
+                                Setting
+                            </legend>
                             <div className="flex flex-col gap-2 pt-2">
                                 <FilterCheckbox
                                     filterName={"indoorFilterFilter"}
@@ -118,7 +121,7 @@ export default function FilterSection({
                             </div>
                         </fieldset>
                         <fieldset className="px-4">
-                            <legend className="font-bold">
+                            <legend className="text-center font-bold">
                                 Activity Level
                             </legend>
                             <div className="flex flex-col gap-2 pt-2">
@@ -143,7 +146,9 @@ export default function FilterSection({
                             </div>
                         </fieldset>
                         <fieldset className="px-4">
-                            <legend className="font-bold">Equipment</legend>
+                            <legend className="text-center font-bold">
+                                Equipment
+                            </legend>
                             {includedEquipmentFilter.length > 0 && (
                                 <>
                                     <p className="block pt-1 text-sm font-medium leading-6 text-gray-700">
@@ -214,7 +219,9 @@ export default function FilterSection({
                             </div>
                         </fieldset>
                         <fieldset className="px-4">
-                            <legend className="font-bold">Player count</legend>
+                            <legend className="text-center font-bold">
+                                Player count
+                            </legend>
                             <div className="flex flex-col gap-2">
                                 <PlayerCountInput
                                     min={1}
