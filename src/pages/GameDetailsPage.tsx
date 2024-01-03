@@ -9,9 +9,11 @@ import GameStatsCard from "../components/GameStatsCard";
 import {
     equipmentListToString,
     fieldExists,
+    gameToSlug,
     slugToGameId,
 } from "../logic/modifyingFields";
 import LoadingSpinner from "../components/LoadingSpinner";
+import CustomLink from "../components/CustomLink";
 
 export default function GameDetailsPage() {
     const { gameSlug } = useParams();
@@ -38,13 +40,31 @@ export default function GameDetailsPage() {
         );
     }
 
-    // To show if gameId does not exist
+    // To show if game does not exist
     if (game === null) {
         return (
             <BasicPageFrame>
                 <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
                     Game not found!
                 </h2>
+            </BasicPageFrame>
+        );
+    }
+
+    // To show if gameSlug is improperly modified
+    if (gameToSlug(game) !== gameSlug) {
+        return (
+            <BasicPageFrame>
+                <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
+                    Oops!
+                </h2>
+                <div className="mt-6 text-lg">
+                    Did you mean to go to{" "}
+                    <CustomLink linkTo={"/games/" + gameToSlug(game)}>
+                        {game.name}
+                    </CustomLink>
+                    ?
+                </div>
             </BasicPageFrame>
         );
     }
