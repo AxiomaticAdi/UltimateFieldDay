@@ -11,16 +11,18 @@ export default function AboutPage() {
                 <p>
                     Born from the nostalgia of my college days where my friends
                     and I would compete to see who can stuff the most{" "}
-                    <CustomLink linkTo={"/games/30"}>
+                    <CustomLink linkTo={"/games/chubby-bunny-30"}>
                         marshmallows in their mouth
                     </CustomLink>{" "}
                     at once or{" "}
-                    <CustomLink linkTo={"/games/30"}>scream-run</CustomLink> the
-                    furthest.
+                    <CustomLink linkTo={"/games/scream-run-31"}>
+                        scream-run
+                    </CustomLink>{" "}
+                    the furthest.
                 </p>
                 <p>
                     Inspired by the joy of a{" "}
-                    <CustomLink linkTo={"/games/23"}>
+                    <CustomLink linkTo={"/games/ping-pong-booty-shake-23"}>
                         booty-shaking challenge
                     </CustomLink>{" "}
                     that brought out the deepest belly laughs from an otherwise
@@ -43,11 +45,11 @@ export default function AboutPage() {
                     to our ever-expanding catalog.
                 </p>
             </div>
-            <CustomLink linkTo={"/games/6"}>
+            <CustomLink linkTo={"/games/egg-spoon-relay-6"}>
                 <img
                     src="/FieldDayFanPic.webp"
                     className="mx-auto mt-12 h-48 rounded-full"
-                    alt="photo of a player playing a game of egg spoon relay"
+                    alt="player playing a game of egg spoon relay"
                 />
             </CustomLink>
         </BasicPageFrame>
